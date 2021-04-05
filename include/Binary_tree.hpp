@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 09:34:20 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/05 09:38:24 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -580,7 +580,7 @@ namespace ft
 
 			void										initialize_node(void)
 			{
-				_node = create_node(value_type(4, 0));
+				_node = create_node(value_type(_size, 0));
 				_node->left = _node->right = _node;
 			}
 
