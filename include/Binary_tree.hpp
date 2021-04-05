@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 09:38:24 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/05 11:29:24 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ namespace ft
 			}
 	};
 
-	template <class Key, class Value, class Compare = ft::less<Value>, class Node = ft::Binary_tree_node<Value>, class Node_Alloc = std::allocator<Node> >
+	template <class Key, class Value, class Compare, class Node = ft::Binary_tree_node<Value>, class Node_Alloc = std::allocator<Node> >
 	class Binary_tree
 	{		
 		public:
@@ -295,8 +295,8 @@ namespace ft
 			typedef node_type*												node_pointer;
 			typedef size_t													size_type;
 			typedef Node_Alloc												allocator_type;
-			typedef ft::Binary_tree_iterator<Value>							iterator;
-			typedef ft::Binary_tree_const_iterator<Value>					const_iterator;
+			typedef ft::Binary_tree_iterator<value_type>					iterator;
+			typedef ft::Binary_tree_const_iterator<value_type>				const_iterator;
 			typedef ft::reverse_iterator<iterator>							reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 			typedef ptrdiff_t												difference_type;
