@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 08:37:28 by gsharony          #+#    #+#             */
-/*   Updated: 2021/03/31 10:45:08 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/05 09:31:32 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ namespace ft
 		public:
 			typedef Key 												key_type;
 			typedef T 													mapped_type;
-			typedef ft::pair<const key_type, mapped_type>				value_type;
+			typedef ft::pair<key_type, mapped_type>						value_type;
 			typedef Compare												key_compare;
 			class 	value_compare: public ft::binary_function<value_type, value_type, bool>
 			{

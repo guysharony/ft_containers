@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 08:37:50 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/05 09:34:20 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,13 @@ namespace ft
 				destroy_node(_node);
 			}
 
+			Binary_tree& 								operator=(const Binary_tree& x)
+			{
+				this->remove(begin(), end());
+				this->insert(x.begin(), x.end());
+				return (*this);
+			}
+
 			iterator									begin()
 			{
 				return (iterator(this->_node->left));
@@ -505,7 +512,7 @@ namespace ft
 
 				if (is_black(_old)) repair_remove(_successor, _successor_parent);
 
-				--_size;
+				_node->value.first = --_size;
 				destroy_node(_old);
 			}
 
@@ -744,7 +751,7 @@ namespace ft
 				
 				_node->parent->color = true;
 
-				++_size;
+				_node->value.first = ++_size;
 				return (result);
 			}
 
