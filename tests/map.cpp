@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 09:45:18 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/05 09:48:31 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,24 @@ static void	begin(bool show_errors)
 	out1 << map1.insert(ft::pair<char,int>('Y', 255)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('f', -245)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('A', 55)).second << std::endl;
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "begins with [" << map1.begin()->first << ", " << map1.begin()->second << "]" << std::endl;
+
 	out1 << map1.insert(ft::pair<char,int>('+', 46)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('k', 865)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('&', 5633)).second << std::endl;
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "begins with [" << map1.begin()->first << ", " << map1.begin()->second << "]" << std::endl;
+
 	out1 << map1.insert(ft::pair<char,int>('l', 464346)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('=', -24254)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('d', 4636)).second << std::endl;
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "begins with [" << map1.begin()->first << ", " << map1.begin()->second << "]" << std::endl;
+
 	out1 << map1.insert(ft::pair<char,int>('3', -346)).second << std::endl;
 	out1 << map1.insert(ft::pair<char,int>('w', 24566)).second << std::endl;
 
@@ -89,12 +101,24 @@ static void	begin(bool show_errors)
 	out2 << map2.insert(std::pair<char,int>('Y', 255)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('f', -245)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('A', 55)).second << std::endl;
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "begins with [" << map2.begin()->first << ", " << map2.begin()->second << "]" << std::endl;
+
 	out2 << map2.insert(std::pair<char,int>('+', 46)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('k', 865)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('&', 5633)).second << std::endl;
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "begins with [" << map2.begin()->first << ", " << map2.begin()->second << "]" << std::endl;
+
 	out2 << map2.insert(std::pair<char,int>('l', 464346)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('=', -24254)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('d', 4636)).second << std::endl;
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "begins with [" << map2.begin()->first << ", " << map2.begin()->second << "]" << std::endl;
+
 	out2 << map2.insert(std::pair<char,int>('3', -346)).second << std::endl;
 	out2 << map2.insert(std::pair<char,int>('w', 24566)).second << std::endl;
 
@@ -123,34 +147,42 @@ static void	end(bool show_errors)
 	ft::map<char, int>	map1;
 
 	out1 << print_list(map1) << std::endl;
-	out1 << "ends with [" << (int)map1.end()->first << ", " << map1.end()->second << "]" << std::endl;
+	out1 << "ends with [" << map1.end()->first << ", " << map1.end()->second << "]" << std::endl;
 
 	map1.insert(ft::pair<char,int>('6', 74));
 	map1.insert(ft::pair<char,int>('a', 635));
 	map1.insert(ft::pair<char,int>('H', 35));
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "ends with [" << map1.end()->first << ", " << map1.end()->second << "]" << std::endl;
+
 	map1.insert(ft::pair<char,int>('U', 1));
 	map1.insert(ft::pair<char,int>('k', 0));
 	map1.insert(ft::pair<char,int>('o', 3563563));
 
 	out1 << print_list(map1) << std::endl;
-	out1 << "ends with [" << (int)map1.end()->first << ", " << map1.end()->second << "]" << std::endl;
+	out1 << "ends with [" << map1.end()->first << ", " << map1.end()->second << "]" << std::endl;
 	a = out1.str();
 
 	std::stringstream 	out2;
 	std::map<char, int>	map2;
 
 	out2 << print_list(map2) << std::endl;
-	out2 << "ends with [" << (int)map2.end()->first << ", " << map2.end()->second << "]" << std::endl;
+	out2 << "ends with [" << map2.end()->first << ", " << map2.end()->second << "]" << std::endl;
 
 	map2.insert(std::pair<char,int>('6', 74));
 	map2.insert(std::pair<char,int>('a', 635));
 	map2.insert(std::pair<char,int>('H', 35));
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "ends with [" << map2.end()->first << ", " << map2.end()->second << "]" << std::endl;
+
 	map2.insert(std::pair<char,int>('U', 1));
 	map2.insert(std::pair<char,int>('k', 0));
 	map2.insert(std::pair<char,int>('o', 3563563));
 
 	out2 << print_list(map2) << std::endl;
-	out2 << "ends with [" << (int)map2.end()->first << ", " << map2.end()->second << "]" << std::endl;
+	out2 << "ends with [" << map2.end()->first << ", " << map2.end()->second << "]" << std::endl;
 	b = out2.str();
 
 	std::cout << "end: [";
@@ -176,9 +208,17 @@ static void	rbegin(bool show_errors)
 	map1.insert(ft::pair<char,int>('#', -245));
 	map1.insert(ft::pair<char,int>('d', 34));
 	map1.insert(ft::pair<char,int>('V', 746));
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "begins with [" << map1.rbegin()->first << ", " << map1.rbegin()->second << "]" << std::endl;
+
 	map1.insert(ft::pair<char,int>('a', -357435635));
 	map1.insert(ft::pair<char,int>('5', 345345));
 	map1.insert(ft::pair<char,int>('#', 34346));
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "begins with [" << map1.rbegin()->first << ", " << map1.rbegin()->second << "]" << std::endl;
+
 	map1.insert(ft::pair<char,int>('f', -34634));
 	map1.insert(ft::pair<char,int>('R', 2346));
 
@@ -192,9 +232,17 @@ static void	rbegin(bool show_errors)
 	map2.insert(std::pair<char,int>('#', -245));
 	map2.insert(std::pair<char,int>('d', 34));
 	map2.insert(std::pair<char,int>('V', 746));
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "begins with [" << map2.rbegin()->first << ", " << map2.rbegin()->second << "]" << std::endl;
+
 	map2.insert(std::pair<char,int>('a', -357435635));
 	map2.insert(std::pair<char,int>('5', 345345));
 	map2.insert(std::pair<char,int>('#', 34346));
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "begins with [" << map2.rbegin()->first << ", " << map2.rbegin()->second << "]" << std::endl;
+
 	map2.insert(std::pair<char,int>('f', -34634));
 	map2.insert(std::pair<char,int>('R', 2346));
 
@@ -225,8 +273,16 @@ static void	rend(bool show_errors)
 	map1.insert(ft::pair<char,int>('@', 45));
 	map1.insert(ft::pair<char,int>('H', 3));
 	map1.insert(ft::pair<char,int>('b', -464));
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "ends with [" << map1.rend()->first << ", " << map1.rend()->second << "]" << std::endl;
+
 	map1.insert(ft::pair<char,int>('K', 4353356));
 	map1.insert(ft::pair<char,int>('%', 23));
+
+	out1 << print_list(map1) << std::endl;
+	out1 << "ends with [" << map1.rend()->first << ", " << map1.rend()->second << "]" << std::endl;
+
 	map1.insert(ft::pair<char,int>('-', -0));
 	map1.insert(ft::pair<char,int>('3', +5430));
 
@@ -240,8 +296,16 @@ static void	rend(bool show_errors)
 	map2.insert(std::pair<char,int>('@', 45));
 	map2.insert(std::pair<char,int>('H', 3));
 	map2.insert(std::pair<char,int>('b', -464));
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "ends with [" << map2.rend()->first << ", " << map2.rend()->second << "]" << std::endl;
+
 	map2.insert(std::pair<char,int>('K', 4353356));
 	map2.insert(std::pair<char,int>('%', 23));
+
+	out2 << print_list(map2) << std::endl;
+	out2 << "ends with [" << map2.rend()->first << ", " << map2.rend()->second << "]" << std::endl;
+
 	map2.insert(std::pair<char,int>('-', -0));
 	map2.insert(std::pair<char,int>('3', +5430));
 
