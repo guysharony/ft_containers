@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/06 08:23:12 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/06 09:21:25 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1047,10 +1047,14 @@ static void		clear(bool show_errors)
 	std::stringstream 		out1;
 	ft::map<char, int>		map1a;
 
-	map1a.insert(ft::pair<char,int>('c', 36));
-	map1a.insert(ft::pair<char,int>('d', 7));
-	map1a.insert(ft::pair<char,int>('y', 635));
+	map1a.insert(ft::pair<char,int>('F', 0));
+	map1a.insert(ft::pair<char,int>('$', 7445));
+	map1a.insert(ft::pair<char,int>('j', -64524535));
+	map1a.insert(ft::pair<char,int>('4', -724));
+	map1a.insert(ft::pair<char,int>('y', 634535));
 
+	out1 << print_list(map1a) << std::endl;
+	map1a.clear();
 	out1 << print_list(map1a) << std::endl;
 	map1a.clear();
 	out1 << print_list(map1a) << std::endl;
@@ -1060,10 +1064,14 @@ static void		clear(bool show_errors)
 	std::stringstream 		out2;
 	std::map<char, int>		map2a;
 
-	map2a.insert(std::pair<char,int>('c', 36));
-	map2a.insert(std::pair<char,int>('d', 7));
-	map2a.insert(std::pair<char,int>('y', 635));
+	map2a.insert(std::pair<char,int>('F', 0));
+	map2a.insert(std::pair<char,int>('$', 7445));
+	map2a.insert(std::pair<char,int>('j', -64524535));
+	map2a.insert(std::pair<char,int>('4', -724));
+	map2a.insert(std::pair<char,int>('y', 634535));
 
+	out2 << print_list(map2a) << std::endl;
+	map2a.clear();
 	out2 << print_list(map2a) << std::endl;
 	map2a.clear();
 	out2 << print_list(map2a) << std::endl;
