@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/06 09:21:25 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/06 10:03:43 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1094,16 +1094,18 @@ static void		erase(bool show_errors)
 {
 	std::string	a;
 	std::string	b;
+
 	std::string	c;
 	std::string	d;
+	
 	std::string	e;
 	std::string	f;
 
 	std::stringstream 		out1a;
 	ft::map<char, int>		map1a;
 
-	map1a.insert(ft::pair<char,int>('c', 36));
-	map1a.insert(ft::pair<char,int>('d', 7));
+	map1a.insert(ft::pair<char,int>('Z', 36));
+	map1a.insert(ft::pair<char,int>('$', -7));
 	map1a.insert(ft::pair<char,int>('y', 635));
 
 	out1a << map1a.size() << print_list(map1a) << std::endl;
@@ -1132,19 +1134,19 @@ static void		erase(bool show_errors)
 	map1a.insert(ft::pair<char,int>('d', 654));
 	map1a.insert(ft::pair<char,int>('e', 4356));
 	map1a.insert(ft::pair<char,int>('f', 65));
-	map1a.insert(ft::pair<char,int>('g', 45));
+	map1a.insert(ft::pair<char,int>('g', -573565356));
 	map1a.insert(ft::pair<char,int>('h', 4356));
 	map1a.insert(ft::pair<char,int>('i', 65));
-	map1a.insert(ft::pair<char,int>('j', 45));
-	map1a.insert(ft::pair<char,int>('k', 45));
-	map1a.insert(ft::pair<char,int>('l', 45));
-	map1a.insert(ft::pair<char,int>('m', 45));
-	map1a.insert(ft::pair<char,int>('n', 45));
-	map1a.insert(ft::pair<char,int>('o', 45));
-	map1a.insert(ft::pair<char,int>('p', 45));
-	map1a.insert(ft::pair<char,int>('q', 45));
-	map1a.insert(ft::pair<char,int>('r', 45));
-	map1a.insert(ft::pair<char,int>('s', 45));
+	map1a.insert(ft::pair<char,int>('j', 3563));
+	map1a.insert(ft::pair<char,int>('k', 445));
+	map1a.insert(ft::pair<char,int>('l', 35654));
+	map1a.insert(ft::pair<char,int>('m', 640));
+	map1a.insert(ft::pair<char,int>('n', 0));
+	map1a.insert(ft::pair<char,int>('o', -463346));
+	map1a.insert(ft::pair<char,int>('p', 34674));
+	map1a.insert(ft::pair<char,int>('q', 4574324));
+	map1a.insert(ft::pair<char,int>('r', 24534));
+	map1a.insert(ft::pair<char,int>('s', 76563));
 
 	out1a << map1a.size() << print_list(map1a) << std::endl;
 	map1a.erase(map1a.find('e'));
@@ -1166,8 +1168,8 @@ static void		erase(bool show_errors)
 	std::stringstream 		out2a;
 	std::map<char, int>		map2a;
 
-	map2a.insert(std::pair<char,int>('c', 36));
-	map2a.insert(std::pair<char,int>('d', 7));
+	map2a.insert(std::pair<char,int>('Z', 36));
+	map2a.insert(std::pair<char,int>('$', -7));
 	map2a.insert(std::pair<char,int>('y', 635));
 
 	out2a << map2a.size() << print_list(map2a) << std::endl;
@@ -1196,19 +1198,19 @@ static void		erase(bool show_errors)
 	map2a.insert(std::pair<char,int>('d', 654));
 	map2a.insert(std::pair<char,int>('e', 4356));
 	map2a.insert(std::pair<char,int>('f', 65));
-	map2a.insert(std::pair<char,int>('g', 45));
+	map2a.insert(std::pair<char,int>('g', -573565356));
 	map2a.insert(std::pair<char,int>('h', 4356));
 	map2a.insert(std::pair<char,int>('i', 65));
-	map2a.insert(std::pair<char,int>('j', 45));
-	map2a.insert(std::pair<char,int>('k', 45));
-	map2a.insert(std::pair<char,int>('l', 45));
-	map2a.insert(std::pair<char,int>('m', 45));
-	map2a.insert(std::pair<char,int>('n', 45));
-	map2a.insert(std::pair<char,int>('o', 45));
-	map2a.insert(std::pair<char,int>('p', 45));
-	map2a.insert(std::pair<char,int>('q', 45));
-	map2a.insert(std::pair<char,int>('r', 45));
-	map2a.insert(std::pair<char,int>('s', 45));
+	map2a.insert(std::pair<char,int>('j', 3563));
+	map2a.insert(std::pair<char,int>('k', 445));
+	map2a.insert(std::pair<char,int>('l', 35654));
+	map2a.insert(std::pair<char,int>('m', 640));
+	map2a.insert(std::pair<char,int>('n', 0));
+	map2a.insert(std::pair<char,int>('o', -463346));
+	map2a.insert(std::pair<char,int>('p', 34674));
+	map2a.insert(std::pair<char,int>('q', 4574324));
+	map2a.insert(std::pair<char,int>('r', 24534));
+	map2a.insert(std::pair<char,int>('s', 76563));
 
 	out2a << map2a.size() << print_list(map2a) << std::endl;
 	map2a.erase(map2a.find('e'));
@@ -1247,31 +1249,31 @@ static void		erase(bool show_errors)
 	out1b << map1b.erase('d') << print_list(map1b) << std::endl;
 	out1b << map1b.erase('c') << print_list(map1b) << std::endl;
 
-	map1b.insert(ft::pair<char,int>('a', 36));
-	map1b.insert(ft::pair<char,int>('b', 7));
-	map1b.insert(ft::pair<char,int>('c', 635));
-	map1b.insert(ft::pair<char,int>('d', 654));
-	map1b.insert(ft::pair<char,int>('e', 4356));
-	map1b.insert(ft::pair<char,int>('f', 65));
-	map1b.insert(ft::pair<char,int>('g', 45));
-	map1b.insert(ft::pair<char,int>('h', 4356));
-	map1b.insert(ft::pair<char,int>('i', 65));
-	map1b.insert(ft::pair<char,int>('j', 45));
-	map1b.insert(ft::pair<char,int>('k', 45));
-	map1b.insert(ft::pair<char,int>('l', 45));
-	map1b.insert(ft::pair<char,int>('m', 45));
-	map1b.insert(ft::pair<char,int>('n', 45));
-	map1b.insert(ft::pair<char,int>('o', 45));
-	map1b.insert(ft::pair<char,int>('p', 45));
-	map1b.insert(ft::pair<char,int>('q', 45));
-	map1b.insert(ft::pair<char,int>('r', 45));
-	map1b.insert(ft::pair<char,int>('s', 45));
+	map1b.insert(ft::pair<char,int>('s', 36));
+	map1b.insert(ft::pair<char,int>('r', 7));
+	map1b.insert(ft::pair<char,int>('q', 635));
+	map1b.insert(ft::pair<char,int>('p', 654));
+	map1b.insert(ft::pair<char,int>('o', 4356));
+	map1b.insert(ft::pair<char,int>('n', 65));
+	map1b.insert(ft::pair<char,int>('m', -573565356));
+	map1b.insert(ft::pair<char,int>('l', 4356));
+	map1b.insert(ft::pair<char,int>('k', 65));
+	map1b.insert(ft::pair<char,int>('j', 3563));
+	map1b.insert(ft::pair<char,int>('i', 445));
+	map1b.insert(ft::pair<char,int>('h', 35654));
+	map1b.insert(ft::pair<char,int>('$', 640));
+	map1b.insert(ft::pair<char,int>('f', 0));
+	map1b.insert(ft::pair<char,int>('e', -463346));
+	map1b.insert(ft::pair<char,int>('d', 34674));
+	map1b.insert(ft::pair<char,int>('c', 4574324));
+	map1b.insert(ft::pair<char,int>('b', 24534));
+	map1b.insert(ft::pair<char,int>('a', 76563));
 
 	out1b << print_list(map1b) << std::endl;
 	out1b << map1b.erase('c') << print_list(map1b) << std::endl;
 	out1b << map1b.erase('d') << print_list(map1b) << std::endl;
 	out1b << map1b.erase('e') << print_list(map1b) << std::endl;
-	out1b << map1b.erase('k') << print_list(map1b) << std::endl;
+	out1b << map1b.erase('$') << print_list(map1b) << std::endl;
 	out1b << map1b.erase('q') << print_list(map1b) << std::endl;
 	out1b << map1b.erase('m') << print_list(map1b) << std::endl;
 	out1b << map1b.erase('r') << print_list(map1b) << std::endl;
@@ -1300,31 +1302,31 @@ static void		erase(bool show_errors)
 	out2b << map2b.erase('d') << print_list(map2b) << std::endl;
 	out2b << map2b.erase('c') << print_list(map2b) << std::endl;
 
-	map2b.insert(std::pair<char,int>('a', 36));
-	map2b.insert(std::pair<char,int>('b', 7));
-	map2b.insert(std::pair<char,int>('c', 635));
-	map2b.insert(std::pair<char,int>('d', 654));
-	map2b.insert(std::pair<char,int>('e', 4356));
-	map2b.insert(std::pair<char,int>('f', 65));
-	map2b.insert(std::pair<char,int>('g', 45));
-	map2b.insert(std::pair<char,int>('h', 4356));
-	map2b.insert(std::pair<char,int>('i', 65));
-	map2b.insert(std::pair<char,int>('j', 45));
-	map2b.insert(std::pair<char,int>('k', 45));
-	map2b.insert(std::pair<char,int>('l', 45));
-	map2b.insert(std::pair<char,int>('m', 45));
-	map2b.insert(std::pair<char,int>('n', 45));
-	map2b.insert(std::pair<char,int>('o', 45));
-	map2b.insert(std::pair<char,int>('p', 45));
-	map2b.insert(std::pair<char,int>('q', 45));
-	map2b.insert(std::pair<char,int>('r', 45));
-	map2b.insert(std::pair<char,int>('s', 45));
+	map2b.insert(std::pair<char,int>('s', 36));
+	map2b.insert(std::pair<char,int>('r', 7));
+	map2b.insert(std::pair<char,int>('q', 635));
+	map2b.insert(std::pair<char,int>('p', 654));
+	map2b.insert(std::pair<char,int>('o', 4356));
+	map2b.insert(std::pair<char,int>('n', 65));
+	map2b.insert(std::pair<char,int>('m', -573565356));
+	map2b.insert(std::pair<char,int>('l', 4356));
+	map2b.insert(std::pair<char,int>('k', 65));
+	map2b.insert(std::pair<char,int>('j', 3563));
+	map2b.insert(std::pair<char,int>('i', 445));
+	map2b.insert(std::pair<char,int>('h', 35654));
+	map2b.insert(std::pair<char,int>('$', 640));
+	map2b.insert(std::pair<char,int>('f', 0));
+	map2b.insert(std::pair<char,int>('e', -463346));
+	map2b.insert(std::pair<char,int>('d', 34674));
+	map2b.insert(std::pair<char,int>('c', 4574324));
+	map2b.insert(std::pair<char,int>('b', 24534));
+	map2b.insert(std::pair<char,int>('a', 76563));
 
 	out2b << print_list(map2b) << std::endl;
 	out2b << map2b.erase('c') << print_list(map2b) << std::endl;
 	out2b << map2b.erase('d') << print_list(map2b) << std::endl;
 	out2b << map2b.erase('e') << print_list(map2b) << std::endl;
-	out2b << map2b.erase('k') << print_list(map2b) << std::endl;
+	out2b << map2b.erase('$') << print_list(map2b) << std::endl;
 	out2b << map2b.erase('q') << print_list(map2b) << std::endl;
 	out2b << map2b.erase('m') << print_list(map2b) << std::endl;
 	out2b << map2b.erase('r') << print_list(map2b) << std::endl;
@@ -1338,22 +1340,22 @@ static void		erase(bool show_errors)
 	map1c.insert(ft::pair<char,int>('a', 36));
 	map1c.insert(ft::pair<char,int>('b', 7));
 	map1c.insert(ft::pair<char,int>('c', 635));
-	map1c.insert(ft::pair<char,int>('d', 654));
-	map1c.insert(ft::pair<char,int>('e', 4356));
+	map1c.insert(ft::pair<char,int>('d', 0));
+	map1c.insert(ft::pair<char,int>('e', -4356));
 	map1c.insert(ft::pair<char,int>('f', 65));
 	map1c.insert(ft::pair<char,int>('g', 45));
-	map1c.insert(ft::pair<char,int>('h', 4356));
-	map1c.insert(ft::pair<char,int>('i', 65));
-	map1c.insert(ft::pair<char,int>('j', 45));
-	map1c.insert(ft::pair<char,int>('k', 45));
-	map1c.insert(ft::pair<char,int>('l', 45));
-	map1c.insert(ft::pair<char,int>('m', 45));
-	map1c.insert(ft::pair<char,int>('n', 45));
-	map1c.insert(ft::pair<char,int>('o', 45));
-	map1c.insert(ft::pair<char,int>('p', 45));
-	map1c.insert(ft::pair<char,int>('q', 45));
-	map1c.insert(ft::pair<char,int>('r', 45));
-	map1c.insert(ft::pair<char,int>('s', 45));
+	map1c.insert(ft::pair<char,int>('h', -4356));
+	map1c.insert(ft::pair<char,int>('i', 345));
+	map1c.insert(ft::pair<char,int>('j', 34));
+	map1c.insert(ft::pair<char,int>('k', 1236));
+	map1c.insert(ft::pair<char,int>('l', -854563));
+	map1c.insert(ft::pair<char,int>('m', 126356));
+	map1c.insert(ft::pair<char,int>('n', 2312453));
+	map1c.insert(ft::pair<char,int>('o', 356));
+	map1c.insert(ft::pair<char,int>('p', 79));
+	map1c.insert(ft::pair<char,int>('q', 23423));
+	map1c.insert(ft::pair<char,int>('r', 53756));
+	map1c.insert(ft::pair<char,int>('s', -45));
 
 	out1c << print_list(map1c) << std::endl;
 	map1c.erase(map1c.find('c'), map1c.find('o'));
@@ -1373,22 +1375,22 @@ static void		erase(bool show_errors)
 	map2c.insert(std::pair<char,int>('a', 36));
 	map2c.insert(std::pair<char,int>('b', 7));
 	map2c.insert(std::pair<char,int>('c', 635));
-	map2c.insert(std::pair<char,int>('d', 654));
-	map2c.insert(std::pair<char,int>('e', 4356));
+	map2c.insert(std::pair<char,int>('d', 0));
+	map2c.insert(std::pair<char,int>('e', -4356));
 	map2c.insert(std::pair<char,int>('f', 65));
 	map2c.insert(std::pair<char,int>('g', 45));
-	map2c.insert(std::pair<char,int>('h', 4356));
-	map2c.insert(std::pair<char,int>('i', 65));
-	map2c.insert(std::pair<char,int>('j', 45));
-	map2c.insert(std::pair<char,int>('k', 45));
-	map2c.insert(std::pair<char,int>('l', 45));
-	map2c.insert(std::pair<char,int>('m', 45));
-	map2c.insert(std::pair<char,int>('n', 45));
-	map2c.insert(std::pair<char,int>('o', 45));
-	map2c.insert(std::pair<char,int>('p', 45));
-	map2c.insert(std::pair<char,int>('q', 45));
-	map2c.insert(std::pair<char,int>('r', 45));
-	map2c.insert(std::pair<char,int>('s', 45));
+	map2c.insert(std::pair<char,int>('h', -4356));
+	map2c.insert(std::pair<char,int>('i', 345));
+	map2c.insert(std::pair<char,int>('j', 34));
+	map2c.insert(std::pair<char,int>('k', 1236));
+	map2c.insert(std::pair<char,int>('l', -854563));
+	map2c.insert(std::pair<char,int>('m', 126356));
+	map2c.insert(std::pair<char,int>('n', 2312453));
+	map2c.insert(std::pair<char,int>('o', 356));
+	map2c.insert(std::pair<char,int>('p', 79));
+	map2c.insert(std::pair<char,int>('q', 23423));
+	map2c.insert(std::pair<char,int>('r', 53756));
+	map2c.insert(std::pair<char,int>('s', -45));
 
 	out2c << print_list(map2c) << std::endl;
 	map2c.erase(map2c.find('c'), map2c.find('o'));
