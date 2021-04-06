@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 11:39:07 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/06 08:02:42 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ static void	begin(bool show_errors)
 {
 	std::string	a;
 	std::string	b;
-
-	std::string	c;
-	std::string	d;
 
 	std::stringstream 	out1;
 	ft::map<char, int>	map1;
@@ -129,90 +126,15 @@ static void	begin(bool show_errors)
 	out2 << "begins with [" << map2.begin()->first << ", " << map2.begin()->second << "]" << std::endl;
 	b = out2.str();
 
-	std::stringstream 	out3;
-	ft::map<char, int, ft::greater<char>>	map3;
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.begin()->first << ", " << map3.begin()->second << "]" << std::endl;
-
-	out3 << map3.insert(ft::pair<char,int>('Y', 255)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('f', -245)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('A', 55)).second << std::endl;
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.begin()->first << ", " << map3.begin()->second << "]" << std::endl;
-
-	out3 << map3.insert(ft::pair<char,int>('+', 46)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('k', 865)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('&', 5633)).second << std::endl;
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.begin()->first << ", " << map3.begin()->second << "]" << std::endl;
-
-	out3 << map3.insert(ft::pair<char,int>('l', 464346)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('=', -24254)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('d', 4636)).second << std::endl;
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.begin()->first << ", " << map3.begin()->second << "]" << std::endl;
-
-	out3 << map3.insert(ft::pair<char,int>('3', -346)).second << std::endl;
-	out3 << map3.insert(ft::pair<char,int>('w', 24566)).second << std::endl;
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.begin()->first << ", " << map3.begin()->second << "]" << std::endl;
-	c = out3.str();
-
-	std::stringstream 	out4;
-	std::map<char, int, std::greater<char>>	map4;
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.begin()->first << ", " << map4.begin()->second << "]" << std::endl;
-
-	out4 << map4.insert(std::pair<char,int>('Y', 255)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('f', -245)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('A', 55)).second << std::endl;
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.begin()->first << ", " << map4.begin()->second << "]" << std::endl;
-
-	out4 << map4.insert(std::pair<char,int>('+', 46)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('k', 865)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('&', 5633)).second << std::endl;
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.begin()->first << ", " << map4.begin()->second << "]" << std::endl;
-
-	out4 << map4.insert(std::pair<char,int>('l', 464346)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('=', -24254)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('d', 4636)).second << std::endl;
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.begin()->first << ", " << map4.begin()->second << "]" << std::endl;
-
-	out4 << map4.insert(std::pair<char,int>('3', -346)).second << std::endl;
-	out4 << map4.insert(std::pair<char,int>('w', 24566)).second << std::endl;
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.begin()->first << ", " << map4.begin()->second << "]" << std::endl;
-	d = out4.str();
-
 	std::cout << "begin: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "][" << (!(c.compare(d)) ? "ok" : "error") << "]" << std::endl;
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
 	{
 		if (a.compare(b)) {
-			std::cout << "- 1/2 -" << std::endl;
+			std::cout << "---" << std::endl;
 			std::cout << a;
 			std::cout << "-" << std::endl;
 			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-		if (c.compare(d)) {
-			std::cout << "- 2/2 -" << std::endl;
-			std::cout << c;
-			std::cout << "-" << std::endl;
-			std::cout << d;
 			std::cout << "---" << std::endl;
 		}
 	}
@@ -222,9 +144,6 @@ static void	end(bool show_errors)
 {
 	std::string	a;
 	std::string	b;
-
-	std::string	c;
-	std::string	d;
 
 	std::stringstream 	out1;
 	ft::map<char, int>	map1;
@@ -268,64 +187,15 @@ static void	end(bool show_errors)
 	out2 << "ends with [" << map2.end()->first << ", " << map2.end()->second << "]" << std::endl;
 	b = out2.str();
 
-	std::stringstream 	out3;
-	ft::map<char, int, ft::greater<char>>	map3;
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "ends with [" << map3.end()->first << ", " << map3.end()->second << "]" << std::endl;
-
-	map3.insert(ft::pair<char,int>('6', 74));
-	map3.insert(ft::pair<char,int>('a', 635));
-	map3.insert(ft::pair<char,int>('H', 35));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "ends with [" << map3.end()->first << ", " << map3.end()->second << "]" << std::endl;
-
-	map3.insert(ft::pair<char,int>('U', 1));
-	map3.insert(ft::pair<char,int>('k', 0));
-	map3.insert(ft::pair<char,int>('o', 3563563));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "ends with [" << map3.end()->first << ", " << map3.end()->second << "]" << std::endl;
-	c = out3.str();
-
-	std::stringstream 	out4;
-	std::map<char, int, std::greater<char>>	map4;
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "ends with [" << map4.end()->first << ", " << map4.end()->second << "]" << std::endl;
-
-	map4.insert(std::pair<char,int>('6', 74));
-	map4.insert(std::pair<char,int>('a', 635));
-	map4.insert(std::pair<char,int>('H', 35));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "ends with [" << map4.end()->first << ", " << map4.end()->second << "]" << std::endl;
-
-	map4.insert(std::pair<char,int>('U', 1));
-	map4.insert(std::pair<char,int>('k', 0));
-	map4.insert(std::pair<char,int>('o', 3563563));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "ends with [" << map4.end()->first << ", " << map4.end()->second << "]" << std::endl;
-	d = out4.str();
-
 	std::cout << "end: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "][" << (!(c.compare(d)) ? "ok" : "error") << "]" << std::endl;
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
 	{
 		if (a.compare(b)) {
-			std::cout << "- 1/2 -" << std::endl;
+			std::cout << "---" << std::endl;
 			std::cout << a;
 			std::cout << "-" << std::endl;
 			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-		if (c.compare(d)) {
-			std::cout << "- 2/2 -" << std::endl;
-			std::cout << c;
-			std::cout << "-" << std::endl;
-			std::cout << d;
 			std::cout << "---" << std::endl;
 		}
 	}
@@ -335,9 +205,6 @@ static void	rbegin(bool show_errors)
 {
 	std::string	a;
 	std::string	b;
-
-	std::string	c;
-	std::string	d;
 
 	std::stringstream 				out1;
 	ft::map<char, int>				map1;
@@ -387,70 +254,15 @@ static void	rbegin(bool show_errors)
 	out2 << "begins with [" << map2.rbegin()->first << ", " << map2.rbegin()->second << "]" << std::endl;
 	b = out2.str();
 
-	std::stringstream 				out3;
-	ft::map<char, int, ft::greater<char>>				map3;
-
-	map3.insert(ft::pair<char,int>('#', -245));
-	map3.insert(ft::pair<char,int>('d', 34));
-	map3.insert(ft::pair<char,int>('V', 746));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.rbegin()->first << ", " << map3.rbegin()->second << "]" << std::endl;
-
-	map3.insert(ft::pair<char,int>('a', -357435635));
-	map3.insert(ft::pair<char,int>('5', 345345));
-	map3.insert(ft::pair<char,int>('#', 34346));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.rbegin()->first << ", " << map3.rbegin()->second << "]" << std::endl;
-
-	map3.insert(ft::pair<char,int>('f', -34634));
-	map3.insert(ft::pair<char,int>('R', 2346));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "begins with [" << map3.rbegin()->first << ", " << map3.rbegin()->second << "]" << std::endl;
-	c = out3.str();
-
-	std::stringstream 				out4;
-	std::map<char, int, std::greater<char>>			map4;
-
-	map4.insert(std::pair<char,int>('#', -245));
-	map4.insert(std::pair<char,int>('d', 34));
-	map4.insert(std::pair<char,int>('V', 746));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.rbegin()->first << ", " << map4.rbegin()->second << "]" << std::endl;
-
-	map4.insert(std::pair<char,int>('a', -357435635));
-	map4.insert(std::pair<char,int>('5', 345345));
-	map4.insert(std::pair<char,int>('#', 34346));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.rbegin()->first << ", " << map4.rbegin()->second << "]" << std::endl;
-
-	map4.insert(std::pair<char,int>('f', -34634));
-	map4.insert(std::pair<char,int>('R', 2346));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "begins with [" << map4.rbegin()->first << ", " << map4.rbegin()->second << "]" << std::endl;
-	d = out4.str();
-
 	std::cout << "rbegin: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "][" << (!(c.compare(d)) ? "ok" : "error") << "]" << std::endl;
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
 	{
 		if (a.compare(b)) {
-			std::cout << "- 1/2 -" << std::endl;
+			std::cout << "---" << std::endl;
 			std::cout << a;
 			std::cout << "-" << std::endl;
 			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-		if (c.compare(d)) {
-			std::cout << "- 2/2 -" << std::endl;
-			std::cout << c;
-			std::cout << "-" << std::endl;
-			std::cout << d;
 			std::cout << "---" << std::endl;
 		}
 	}
@@ -460,9 +272,6 @@ static void	rend(bool show_errors)
 {
 	std::string	a;
 	std::string	b;
-
-	std::string	c;
-	std::string	d;
 
 	std::stringstream 				out1;
 	ft::map<char, int>				map1;
@@ -510,68 +319,15 @@ static void	rend(bool show_errors)
 	out2 << "ends with [" << map2.rend()->first << ", " << map2.rend()->second << "]" << std::endl;
 	b = out2.str();
 
-	std::stringstream 				out3;
-	ft::map<char, int, ft::greater<char>>				map3;
-
-	map3.insert(ft::pair<char,int>('@', 45));
-	map3.insert(ft::pair<char,int>('H', 3));
-	map3.insert(ft::pair<char,int>('b', -464));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "ends with [" << map3.rend()->first << ", " << map3.rend()->second << "]" << std::endl;
-
-	map3.insert(ft::pair<char,int>('K', 4353356));
-	map3.insert(ft::pair<char,int>('%', 23));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "ends with [" << map3.rend()->first << ", " << map3.rend()->second << "]" << std::endl;
-
-	map3.insert(ft::pair<char,int>('-', -0));
-	map3.insert(ft::pair<char,int>('3', +5430));
-
-	out3 << print_list(map3) << std::endl;
-	out3 << "ends with [" << map3.rend()->first << ", " << map3.rend()->second << "]" << std::endl;
-	c = out3.str();
-
-	std::stringstream 				out4;
-	std::map<char, int, std::greater<char>>			map4;
-
-	map4.insert(std::pair<char,int>('@', 45));
-	map4.insert(std::pair<char,int>('H', 3));
-	map4.insert(std::pair<char,int>('b', -464));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "ends with [" << map4.rend()->first << ", " << map4.rend()->second << "]" << std::endl;
-
-	map4.insert(std::pair<char,int>('K', 4353356));
-	map4.insert(std::pair<char,int>('%', 23));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "ends with [" << map4.rend()->first << ", " << map4.rend()->second << "]" << std::endl;
-
-	map4.insert(std::pair<char,int>('-', -0));
-	map4.insert(std::pair<char,int>('3', +5430));
-
-	out4 << print_list(map4) << std::endl;
-	out4 << "ends with [" << map4.rend()->first << ", " << map4.rend()->second << "]" << std::endl;
-	d = out4.str();
-
 	std::cout << "rend: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "][" << (!(c.compare(d)) ? "ok" : "error") << "]" << std::endl;
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
 	{
 		if (a.compare(b)) {
-			std::cout << "- 1/2 -" << std::endl;
+			std::cout << "---" << std::endl;
 			std::cout << a;
 			std::cout << "-" << std::endl;
 			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-		if (c.compare(d)) {
-			std::cout << "- 2/2 -" << std::endl;
-			std::cout << c;
-			std::cout << "-" << std::endl;
-			std::cout << d;
 			std::cout << "---" << std::endl;
 		}
 	}
@@ -715,7 +471,7 @@ static void	max_size(bool show_errors)
 
 	out1 << "max_size? " << map1.max_size() << std::endl;
 
-	map1.insert(ft::pair<char,int>('c', 36));
+	map1.insert(ft::pair<char,int>('4', -5236));
 	map1.insert(ft::pair<char,int>('d', 7));
 
 	out1 << "max_size? " << map1.max_size() << std::endl;
@@ -725,7 +481,7 @@ static void	max_size(bool show_errors)
 
 	out1 << "max_size? " << map1.max_size() << std::endl;
 
-	map1.insert(ft::pair<char,int>('e', 765));
+	map1.insert(ft::pair<char,int>('&', 765));
 	map1.insert(ft::pair<char,int>('r', 255));
 
 	out1 << "max_size? " << map1.max_size() << std::endl;
@@ -738,7 +494,7 @@ static void	max_size(bool show_errors)
 
 	out2 << "max_size? " << map2.max_size() << std::endl;
 
-	map2.insert(std::pair<char,int>('c', 36));
+	map2.insert(std::pair<char,int>('4', -5236));
 	map2.insert(std::pair<char,int>('d', 7));
 
 	out2 << "max_size? " << map2.max_size() << std::endl;
@@ -748,7 +504,7 @@ static void	max_size(bool show_errors)
 
 	out2 << "max_size? " << map2.max_size() << std::endl;
 
-	map2.insert(std::pair<char,int>('e', 765));
+	map2.insert(std::pair<char,int>('&', 765));
 	map2.insert(std::pair<char,int>('r', 255));
 
 	out2 << "max_size? " << map2.max_size() << std::endl;
@@ -773,9 +529,6 @@ static void	find(bool show_errors)
 {
 	std::string	a;
 	std::string	b;
-
-	std::string	c;
-	std::string	d;
 
 	std::stringstream 				out1;
 	ft::map<char, int>				map1;
@@ -823,68 +576,15 @@ static void	find(bool show_errors)
 
 	b = out2.str();
 
-	std::stringstream 				out3;
-	ft::map<char, int, ft::greater<char>>				map3;
-
-	out3 << "Exists? " << ((map3.find('?') != map3.end()) ? "true" : "false") << std::endl;
-
-	map3.insert(ft::pair<char,int>('h', 45));
-	map3.insert(ft::pair<char,int>('R', 76556));
-
-	out3 << "Exists? " << ((map3.find('?') != map3.end()) ? "true" : "false") << std::endl;
-
-	map3.insert(ft::pair<char,int>('9', 235));
-	map3.insert(ft::pair<char,int>('?', -3456));
-
-	out3 << "Exists? " << ((map3.find('?') != map3.end()) ? "true" : "false") << std::endl;
-
-	map3.insert(ft::pair<char,int>('D', 45757));
-	map3.insert(ft::pair<char,int>('m', 2345));
-	map3.insert(ft::pair<char,int>('!', -34743534));
-
-	out3 << "Exists? " << ((map3.find('!') != map3.end()) ? "true" : "false") << std::endl;
-
-	c = out3.str();
-
-	std::stringstream 				out4;
-	std::map<char, int, std::greater<char>>				map4;
-
-	out4 << "Exists? " << ((map4.find('?') != map4.end()) ? "true" : "false") << std::endl;
-
-	map4.insert(std::pair<char,int>('h', 45));
-	map4.insert(std::pair<char,int>('R', 76556));
-
-	out4 << "Exists? " << ((map4.find('?') != map4.end()) ? "true" : "false") << std::endl;
-
-	map4.insert(std::pair<char,int>('9', 235));
-	map4.insert(std::pair<char,int>('?', -3456));
-
-	out4 << "Exists? " << ((map4.find('?') != map4.end()) ? "true" : "false") << std::endl;
-
-	map4.insert(std::pair<char,int>('D', 45757));
-	map4.insert(std::pair<char,int>('m', 2345));
-	map4.insert(std::pair<char,int>('!', -34743534));
-
-	out4 << "Exists? " << ((map4.find('!') != map4.end()) ? "true" : "false") << std::endl;
-
-	d = out4.str();
-
 	std::cout << "find: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "][" << (!(c.compare(d)) ? "ok" : "error") << "]" << std::endl;
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
 	{
 		if (a.compare(b)) {
-			std::cout << "- 1/2 -" << std::endl;
+			std::cout << "---" << std::endl;
 			std::cout << a;
 			std::cout << "-" << std::endl;
 			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-		if (c.compare(d)) {
-			std::cout << "- 2/2 -" << std::endl;
-			std::cout << c;
-			std::cout << "-" << std::endl;
-			std::cout << d;
 			std::cout << "---" << std::endl;
 		}
 	}
@@ -898,10 +598,18 @@ static void	operat(bool show_errors)
 	std::stringstream 				out1;
 	ft::map<char, int>				map1;
 	
-	out1 << (map1['a'] = 2563) << std::endl;
-  	out1 << (map1['b'] = 453) << std::endl;
-  	out1 << (map1['c'] = map1['b']) << std::endl;
+	out1 << (map1['4'] = -263) << std::endl;
+  	out1 << (map1['A'] = 53) << std::endl;
+  	out1 << (map1['&'] = map1['4']) << std::endl;
+	out1 << (map1['4'] = map1['$']) << std::endl;
+	out1 << print_list(map1) << std::endl;
+	
+	map1.clear();
 
+	out1 << (map1['T'] = 3) << std::endl;
+  	out1 << (map1['h'] = 0) << std::endl;
+  	out1 << (map1['7'] = map1['4']) << std::endl;
+	out1 << (map1['T'] = map1['h']) << std::endl;
 	out1 << print_list(map1) << std::endl;
 
 	a = out1.str();
@@ -909,10 +617,18 @@ static void	operat(bool show_errors)
 	std::stringstream 				out2;
 	std::map<char, int>				map2;
 
-	out2 << (map2['a'] = 2563) << std::endl;
-  	out2 << (map2['b'] = 453) << std::endl;
-  	out2 << (map2['c'] = map2['b']) << std::endl;
+	out2 << (map2['4'] = -263) << std::endl;
+  	out2 << (map2['A'] = 53) << std::endl;
+  	out2 << (map2['&'] = map2['4']) << std::endl;
+	out2 << (map2['4'] = map2['$']) << std::endl;
+	out2 << print_list(map2) << std::endl;
 
+	map2.clear();
+
+	out2 << (map2['T'] = 3) << std::endl;
+  	out2 << (map2['h'] = 0) << std::endl;
+  	out2 << (map2['7'] = map2['4']) << std::endl;
+	out2 << (map2['T'] = map2['h']) << std::endl;
 	out2 << print_list(map2) << std::endl;
 	
 	b = out2.str();
@@ -944,7 +660,7 @@ static void		insert(bool show_errors)
 	ft::map<char, int>								map1a;
 	ft::pair<ft::map<char, int>::iterator, bool>	result1a;
 
-	result1a = map1a.insert(ft::pair<char,int>('c', 36));
+	result1a = map1a.insert(ft::pair<char,int>('&', 3476));
 	out1a << "Inserted? [" << result1a.first->first << " : " << result1a.first->second << "] => " << result1a.second << std::endl;
 	out1a << print_list(map1a) << std::endl;
 
@@ -952,11 +668,11 @@ static void		insert(bool show_errors)
 	out1a << "Inserted? [" << result1a.first->first << " : " << result1a.first->second << "] => " << result1a.second << std::endl;
 	out1a << print_list(map1a) << std::endl;
 
-	result1a = map1a.insert(ft::pair<char,int>('y', 635));
+	result1a = map1a.insert(ft::pair<char,int>('Y', 635));
 	out1a << "Inserted? [" << result1a.first->first << " : " << result1a.first->second << "] => " << result1a.second << std::endl;
 	out1a << print_list(map1a) << std::endl;
 
-	result1a = map1a.insert(ft::pair<char,int>('t', 13));
+	result1a = map1a.insert(ft::pair<char,int>('6', -13));
 	out1a << "Inserted? [" << result1a.first->first << " : " << result1a.first->second << "] => " << result1a.second << std::endl;
 	out1a << print_list(map1a) << std::endl;
 
@@ -964,7 +680,7 @@ static void		insert(bool show_errors)
 	out1a << "Inserted? [" << result1a.first->first << " : " << result1a.first->second << "] => " << result1a.second << std::endl;
 	out1a << print_list(map1a) << std::endl;
 
-	result1a = map1a.insert(ft::pair<char,int>('r', 255));
+	result1a = map1a.insert(ft::pair<char,int>('$', -25245));
 	out1a << "Inserted? [" << result1a.first->first << " : " << result1a.first->second << "] => " << result1a.second << std::endl;
 	out1a << print_list(map1a) << std::endl;
 
@@ -978,7 +694,7 @@ static void		insert(bool show_errors)
 	std::map<char, int>								map2a;
 	std::pair<std::map<char, int>::iterator, bool>	result2a;
 
-	result2a = map2a.insert(std::pair<char,int>('c', 36));
+	result2a = map2a.insert(std::pair<char,int>('&', 3476));
 	out2a << "Inserted? [" << result2a.first->first << " : " << result2a.first->second << "] => " << result2a.second << std::endl;
 	out2a << print_list(map2a) << std::endl;
 
@@ -986,11 +702,11 @@ static void		insert(bool show_errors)
 	out2a << "Inserted? [" << result2a.first->first << " : " << result2a.first->second << "] => " << result2a.second << std::endl;
 	out2a << print_list(map2a) << std::endl;
 
-	result2a = map2a.insert(std::pair<char,int>('y', 635));
+	result2a = map2a.insert(std::pair<char,int>('Y', 635));
 	out2a << "Inserted? [" << result2a.first->first << " : " << result2a.first->second << "] => " << result2a.second << std::endl;
 	out2a << print_list(map2a) << std::endl;
 
-	result2a = map2a.insert(std::pair<char,int>('t', 13));
+	result2a = map2a.insert(std::pair<char,int>('6', -13));
 	out2a << "Inserted? [" << result2a.first->first << " : " << result2a.first->second << "] => " << result2a.second << std::endl;
 	out2a << print_list(map2a) << std::endl;
 
@@ -998,7 +714,7 @@ static void		insert(bool show_errors)
 	out2a << "Inserted? [" << result2a.first->first << " : " << result2a.first->second << "] => " << result2a.second << std::endl;
 	out2a << print_list(map2a) << std::endl;
 
-	result2a = map2a.insert(std::pair<char,int>('r', 255));
+	result2a = map2a.insert(std::pair<char,int>('$', -25245));
 	out2a << "Inserted? [" << result2a.first->first << " : " << result2a.first->second << "] => " << result2a.second << std::endl;
 	out2a << print_list(map2a) << std::endl;
 
@@ -1011,7 +727,7 @@ static void		insert(bool show_errors)
 	ft::map<char, int>								map1b;
 	ft::map<char, int>::iterator					result1b;
 
-	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('c', 36));
+	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('1', 336));
 	out1b << "Inserted? [" << result1b->first << "] => " << result1b->second << std::endl;
 	out1b << print_list(map1b) << std::endl;
 
@@ -1019,7 +735,7 @@ static void		insert(bool show_errors)
 	out1b << "Inserted? [" << result1b->first << "] => " << result1b->second << std::endl;
 	out1b << print_list(map1b) << std::endl;
 
-	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('y', 635));
+	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('Y', -635));
 	out1b << "Inserted? [" << result1b->first << "] => " << result1b->second << std::endl;
 	out1b << print_list(map1b) << std::endl;
 
@@ -1027,11 +743,11 @@ static void		insert(bool show_errors)
 	out1b << "Inserted? [" << result1b->first << "] => " << result1b->second << std::endl;
 	out1b << print_list(map1b) << std::endl;
 
-	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('e', 735));
+	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('&', 735));
 	out1b << "Inserted? [" << result1b->first << "] => " << result1b->second << std::endl;
 	out1b << print_list(map1b) << std::endl;
 
-	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('r', 255));
+	result1b = map1b.insert(map1b.begin(), ft::pair<char,int>('$', -255));
 	out1b << "Inserted? [" << result1b->first << "] => " << result1b->second << std::endl;
 	out1b << print_list(map1b) << std::endl;
 
@@ -1045,7 +761,7 @@ static void		insert(bool show_errors)
 	std::map<char, int>								map2b;
 	std::map<char, int>::iterator					result2b;
 
-	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('c', 36));
+	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('1', 336));
 	out2b << "Inserted? [" << result2b->first << "] => " << result2b->second << std::endl;
 	out2b << print_list(map2b) << std::endl;
 
@@ -1053,7 +769,7 @@ static void		insert(bool show_errors)
 	out2b << "Inserted? [" << result2b->first << "] => " << result2b->second << std::endl;
 	out2b << print_list(map2b) << std::endl;
 
-	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('y', 635));
+	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('Y', -635));
 	out2b << "Inserted? [" << result2b->first << "] => " << result2b->second << std::endl;
 	out2b << print_list(map2b) << std::endl;
 
@@ -1061,11 +777,11 @@ static void		insert(bool show_errors)
 	out2b << "Inserted? [" << result2b->first << "] => " << result2b->second << std::endl;
 	out2b << print_list(map2b) << std::endl;
 
-	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('e', 735));
+	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('&', 735));
 	out2b << "Inserted? [" << result2b->first << "] => " << result2b->second << std::endl;
 	out2b << print_list(map2b) << std::endl;
 
-	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('r', 255));
+	result2b = map2b.insert(map2b.begin(), std::pair<char,int>('$', -255));
 	out2b << "Inserted? [" << result2b->first << "] => " << result2b->second << std::endl;
 	out2b << print_list(map2b) << std::endl;
 
@@ -1079,6 +795,14 @@ static void		insert(bool show_errors)
 	ft::map<char, int>								map1c;
 
 	map1c.insert(map1b.begin(), map1b.find('t'));
+	map1c.clear();
+	map1c.insert(map1b.find('$'), map1b.find('d'));
+	map1c.clear();
+	map1c.insert(map1b.begin(), map1b.end());
+	map1c.clear();
+	map1c.insert(map1b.begin()++, map1b.end()--);
+	map1c.clear();
+	map1c.insert(map1b.find('1'), map1b.find('Y'));
 
 	out1c << print_list(map1c) << std::endl;
 	e = out1c.str();
@@ -1087,6 +811,14 @@ static void		insert(bool show_errors)
 	std::map<char, int>								map2c;
 
 	map2c.insert(map2b.begin(), map2b.find('t'));
+	map2c.clear();
+	map2c.insert(map2b.find('$'), map2b.find('d'));
+	map2c.clear();
+	map2c.insert(map2b.begin(), map2b.end());
+	map2c.clear();
+	map2c.insert(map2b.begin()++, map2b.end()--);
+	map2c.clear();
+	map2c.insert(map2b.find('1'), map2b.find('Y'));
 
 	out2c << print_list(map2c) << std::endl;
 	f = out2c.str();
