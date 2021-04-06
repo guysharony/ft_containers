@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/06 08:02:42 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/06 08:23:12 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -859,15 +859,25 @@ static void		count(bool show_errors)
 	std::stringstream 		out1;
 	ft::map<char, int>		map1;
 
-	map1.insert(ft::pair<char,int>('c', 36));
+	out1 << map1.count('5') << std::endl;
+	out1 << map1.count('r') << std::endl;
+	out1 << map1.count('&') << std::endl;
+	
+	map1.insert(ft::pair<char,int>('5', 36));
 	map1.insert(ft::pair<char,int>('d', 7));
-	map1.insert(ft::pair<char,int>('y', 635));
-	out1 << map1.count('r') << std::endl;
+	map1.insert(ft::pair<char,int>('&', -635));
 
-	map1.insert(ft::pair<char,int>('t', 13));
-	map1.insert(ft::pair<char,int>('e', 765));
-	map1.insert(ft::pair<char,int>('r', 255));
+	out1 << map1.count('5') << std::endl;
 	out1 << map1.count('r') << std::endl;
+	out1 << map1.count('&') << std::endl;
+
+	map1.insert(ft::pair<char,int>('3', 13));
+	map1.insert(ft::pair<char,int>('G', 75365));
+	map1.insert(ft::pair<char,int>('r', 25));
+
+	out1 << map1.count('r') << std::endl;
+	out1 << map1.count('4') << std::endl;
+	out1 << map1.count('G') << std::endl;
 
 	out1 << print_list(map1) << std::endl;
 
@@ -876,15 +886,25 @@ static void		count(bool show_errors)
 	std::stringstream 		out2;
 	std::map<char, int>		map2;
 
-	map2.insert(std::pair<char,int>('c', 36));
+	out2 << map2.count('5') << std::endl;
+	out2 << map2.count('r') << std::endl;
+	out2 << map2.count('&') << std::endl;
+	
+	map2.insert(std::pair<char,int>('5', 36));
 	map2.insert(std::pair<char,int>('d', 7));
-	map2.insert(std::pair<char,int>('y', 635));
+	map2.insert(std::pair<char,int>('&', -635));
+	
+	out2 << map2.count('5') << std::endl;
 	out2 << map2.count('r') << std::endl;
+	out2 << map2.count('&') << std::endl;
 
-	map2.insert(std::pair<char,int>('t', 13));
-	map2.insert(std::pair<char,int>('e', 765));
-	map2.insert(std::pair<char,int>('r', 255));
+	map2.insert(std::pair<char,int>('3', 13));
+	map2.insert(std::pair<char,int>('G', 75365));
+	map2.insert(std::pair<char,int>('r', 25));
+
 	out2 << map2.count('r') << std::endl;
+	out2 << map2.count('4') << std::endl;
+	out2 << map2.count('G') << std::endl;
 
 	out2 << print_list(map2) << std::endl;
 
@@ -911,16 +931,47 @@ static void		swap(bool show_errors)
 	ft::map<char, int>		map1a;
 	ft::map<char, int>		map1b;
 
-	map1a.insert(ft::pair<char,int>('c', 36));
-	map1a.insert(ft::pair<char,int>('d', 7));
-	map1a.insert(ft::pair<char,int>('y', 635));
-
-	map1b.insert(ft::pair<char,int>('t', 13));
-	map1b.insert(ft::pair<char,int>('e', 765));
-	map1b.insert(ft::pair<char,int>('r', 255));
 	out1 << print_list(map1a) << std::endl;
 	out1 << print_list(map1b) << std::endl;
+
 	map1a.swap(map1b);
+	
+	out1 << print_list(map1a) << std::endl;
+	out1 << print_list(map1b) << std::endl;
+
+	map1a.insert(ft::pair<char,int>('5', 0));
+
+	out1 << print_list(map1a) << std::endl;
+	out1 << print_list(map1b) << std::endl;
+
+	map1a.swap(map1b);
+	
+	out1 << print_list(map1a) << std::endl;
+	out1 << print_list(map1b) << std::endl;
+
+	map1a.insert(ft::pair<char,int>('D', 7));
+	map1a.insert(ft::pair<char,int>('y', -635));
+
+	map1b.insert(ft::pair<char,int>('&', 13));
+
+	out1 << print_list(map1a) << std::endl;
+	out1 << print_list(map1b) << std::endl;
+
+	map1a.swap(map1b);
+	
+	out1 << print_list(map1a) << std::endl;
+	out1 << print_list(map1b) << std::endl;
+
+	map1b.insert(ft::pair<char,int>('e', 72351465));
+	map1b.insert(ft::pair<char,int>('$', -2324555));
+	map1b.insert(ft::pair<char,int>('4', 4555));
+	map1b.insert(ft::pair<char,int>('a', -23555));
+
+	out1 << print_list(map1a) << std::endl;
+	out1 << print_list(map1b) << std::endl;
+
+	map1a.swap(map1b);
+
 	out1 << print_list(map1a) << std::endl;
 	out1 << print_list(map1b) << std::endl;
 
@@ -930,16 +981,47 @@ static void		swap(bool show_errors)
 	std::map<char, int>		map2a;
 	std::map<char, int>		map2b;
 
-	map2a.insert(std::pair<char,int>('c', 36));
-	map2a.insert(std::pair<char,int>('d', 7));
-	map2a.insert(std::pair<char,int>('y', 635));
-
-	map2b.insert(std::pair<char,int>('t', 13));
-	map2b.insert(std::pair<char,int>('e', 765));
-	map2b.insert(std::pair<char,int>('r', 255));
 	out2 << print_list(map2a) << std::endl;
 	out2 << print_list(map2b) << std::endl;
+
 	map2a.swap(map2b);
+	
+	out2 << print_list(map2a) << std::endl;
+	out2 << print_list(map2b) << std::endl;
+
+	map2a.insert(std::pair<char,int>('5', 0));
+
+	out2 << print_list(map2a) << std::endl;
+	out2 << print_list(map2b) << std::endl;
+
+	map2a.swap(map2b);
+	
+	out2 << print_list(map2a) << std::endl;
+	out2 << print_list(map2b) << std::endl;
+
+	map2a.insert(std::pair<char,int>('D', 7));
+	map2a.insert(std::pair<char,int>('y', -635));
+
+	map2b.insert(std::pair<char,int>('&', 13));
+
+	out2 << print_list(map2a) << std::endl;
+	out2 << print_list(map2b) << std::endl;
+
+	map2a.swap(map2b);
+	
+	out2 << print_list(map2a) << std::endl;
+	out2 << print_list(map2b) << std::endl;
+
+	map2b.insert(std::pair<char,int>('e', 72351465));
+	map2b.insert(std::pair<char,int>('$', -2324555));
+	map2b.insert(std::pair<char,int>('4', 4555));
+	map2b.insert(std::pair<char,int>('a', -23555));
+
+	out2 << print_list(map2a) << std::endl;
+	out2 << print_list(map2b) << std::endl;
+
+	map2a.swap(map2b);
+
 	out2 << print_list(map2a) << std::endl;
 	out2 << print_list(map2b) << std::endl;
 
