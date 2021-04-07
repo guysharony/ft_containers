@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 11:29:24 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 12:59:58 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,8 +305,8 @@ namespace ft
 			Binary_tree(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			:
 				_size(0),
-				_compare(comp),
-				_allocator(alloc)
+				_allocator(alloc),
+				_compare(comp)
 			{
 				initialize_node();
 			}
@@ -314,8 +314,8 @@ namespace ft
 			Binary_tree(const Binary_tree& x)
 			:
 				_size(0),
-				_compare(x._compare),
-				_allocator(x._allocator)
+				_allocator(x._allocator),
+				_compare(x._compare)
 			{
 				initialize_node(x.begin(), x.end());
 			}
@@ -442,7 +442,7 @@ namespace ft
 				bool 			_cursor_side = scan_tree(_parent, _cursor, value);
 				iterator		_temp = iterator(_parent);
 				
-				if (_cursor_side && _temp == begin() || compaire_keys(((_cursor_side) ? --_temp : _temp), value))
+				if ((_cursor_side && _temp == begin()) || compaire_keys(((_cursor_side) ? --_temp : _temp), value))
 					return (result_type(repair_insert(insert_node(value, _parent, _cursor)), true));
 
 				return (result_type(iterator(_parent), false));
@@ -450,6 +450,7 @@ namespace ft
 
 			iterator									insert(iterator position, value_type value)
 			{
+				static_cast<void>(position);
 				return (this->insert(value).first);
 			}
 
@@ -548,7 +549,7 @@ namespace ft
 			allocator_type								_allocator;
 			key_compare									_compare;
 
-			node_pointer								create_node(value_type value, node_pointer parent=nullptr)
+			node_pointer								create_node(value_type value, node_pointer parent=NULL)
 			{
 				node_pointer _tmp = _allocator.allocate(1);
 				_allocator.construct(_tmp, Node(false, value));

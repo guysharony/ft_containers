@@ -6,12 +6,13 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:42 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 08:46:43 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:02:11 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Stack.hpp"
 #include <iostream>
+#include <sstream>
 #include <stack>
 
 static void		empty(bool show_errors)

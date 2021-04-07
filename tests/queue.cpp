@@ -6,12 +6,13 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:48 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 08:46:49 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:01:47 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Queue.hpp"
 #include <iostream>
+#include <sstream>
 #include <queue>
 
 static void		empty(bool show_errors)

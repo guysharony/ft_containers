@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/03/19 10:35:44 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 12:54:07 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string>
 #include <list>
 #include <sstream>
+#include <cmath>
 
 template <typename T>
 std::string		print_list(std::list<T> lst)

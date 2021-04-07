@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 08:47:04 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:03:10 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,7 +270,6 @@ namespace ft
 				size_type _len = this->_available - this->_end;
 				
 				size_type _len_f = end() - position;
-				size_type _len_b = position - begin();
 
 				if (!n)
 					return;
@@ -304,7 +303,6 @@ namespace ft
 				size_type _len = this->_available - this->_end;
 
 				size_type _len_f = end() - position;
-				size_type _len_b = position - begin();
 
 				size_type _size = last - first;
 				
@@ -323,7 +321,7 @@ namespace ft
 					else
 					{
 						InputIterator _tmp = first;
-						for (int i = 0; i < _len_f; i++)
+						for (size_type i = 0; i < _len_f; i++)
 							_tmp++;
 						this->_copy(_tmp, last, this->_end);
 						this->_end += _size - _len_f;

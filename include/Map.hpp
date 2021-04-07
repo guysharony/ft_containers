@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 08:37:28 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/07 09:45:03 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 12:59:11 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,13 @@ namespace ft
 			
 			explicit 	map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			:
-				_node(),
-				_allocator(alloc)
+				_node(comp, alloc)
 			{}
 
 			template <class InputIterator>
   			map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			:
-				_node(),
-				_allocator(alloc)
+				_node(comp, alloc)
 			{
 				this->insert(first, last);
 			}
@@ -254,7 +252,6 @@ namespace ft
 			}
 
 		private:
-			allocator_type								_allocator;
 			tree_type									_node;
 	};
 

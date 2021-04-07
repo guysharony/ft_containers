@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 15:25:33 by gsharony          #+#    #+#             */
-/*   Updated: 2021/02/18 09:52:17 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:00:57 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <iostream>
 # include <limits>
-# include <cmath>
-# include <ctgmath>
 
 namespace ft
 {
@@ -44,19 +42,19 @@ namespace ft
 
 		Binary_tree_node()
 		:
-			parent(nullptr),
-			left(nullptr),
-			right(nullptr),
 			color(false),
+			parent(NULL),
+			left(NULL),
+			right(NULL),
 			value()
 		{}
 
 		Binary_tree_node(bool c, const value_type& v)
 		:
-			parent(nullptr),
-			left(nullptr),
-			right(nullptr),
 			color(c),
+			parent(NULL),
+			left(NULL),
+			right(NULL),
 			value(v)
 		{}
 	};
