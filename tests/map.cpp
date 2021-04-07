@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/07 10:12:07 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 12:33:18 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include <map>
 #include <sstream>
 
-template <typename Key, typename Value, typename Compare=std::less<Key> >
-std::string		print_list(std::map<Key, Value, Compare> vec)
+template <typename Key, typename Value>
+std::string		print_list(std::map<Key, Value> vec)
 {
 	std::stringstream out;
-	typename std::map<Key, Value, Compare>::iterator tmp1 = vec.begin();
+	typename std::map<Key, Value>::iterator tmp1 = vec.begin();
 
 	out << "[";
 	while (tmp1 != vec.end())
@@ -35,11 +35,11 @@ std::string		print_list(std::map<Key, Value, Compare> vec)
 	return (out.str());
 }
 
-template <typename Key, typename Value, typename Compare=ft::less<Key>>
-std::string		print_list(ft::map<Key, Value, Compare> vec)
+template <typename Key, typename Value>
+std::string		print_list(ft::map<Key, Value> vec)
 {
 	std::stringstream out;
-	typename ft::map<Key, Value, Compare>::iterator tmp1 = vec.begin();
+	typename ft::map<Key, Value>::iterator tmp1 = vec.begin();
 
 	out << "[";
 	while (tmp1 != vec.end())
