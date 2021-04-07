@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/07 10:03:58 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/07 10:12:07 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1527,10 +1527,10 @@ static void		value_comp(bool show_errors)
 	std::stringstream 					out1;
 	ft::map<char, int>					map1;
 
-	map1.insert(ft::pair<char,int>('c', 300));
-	map1.insert(ft::pair<char,int>('d', 400));
-	map1.insert(ft::pair<char,int>('b', 200));
-	map1.insert(ft::pair<char,int>('a', 100));
+	map1.insert(ft::pair<char,int>('e', 721465));
+	map1.insert(ft::pair<char,int>('$', -225));
+	map1.insert(ft::pair<char,int>('2', 46755));
+	map1.insert(ft::pair<char,int>('a', -23555));
 
 	ft::map<char, int>::iterator		itr1 = map1.begin();
 
@@ -1540,21 +1540,31 @@ static void		value_comp(bool show_errors)
 
 	out1 << "highest: [" << highest1.first << ", " << highest1.second << "]" << std::endl;
 
+	ft::pair<char,int> lowest1 = *map1.begin();
+
+	out1 << "lowest: [" << lowest1.first << ", " << lowest1.second << "]" << std::endl;
+
 	out1 << std::endl;
 
 	do {
 		out1 << itr1->first << " => " << itr1->second << std::endl;
 	} while (map1.value_comp()(*itr1++, highest1));
 
+	itr1 = map1.begin();
+
+	do {
+		out1 << itr1->first << " => " << itr1->second << std::endl;
+	} while (map1.value_comp()(*itr1++, lowest1));
+
 	a = out1.str();
 
 	std::stringstream 					out2;
 	std::map<char, int>					map2;
 
-	map2.insert(std::pair<char,int>('c', 300));
-	map2.insert(std::pair<char,int>('d', 400));
-	map2.insert(std::pair<char,int>('b', 200));
-	map2.insert(std::pair<char,int>('a', 100));
+	map2.insert(std::pair<char,int>('e', 721465));
+	map2.insert(std::pair<char,int>('$', -225));
+	map2.insert(std::pair<char,int>('2', 46755));
+	map2.insert(std::pair<char,int>('a', -23555));
 
 	std::map<char, int>::iterator		itr2 = map2.begin();
 
@@ -1564,11 +1574,21 @@ static void		value_comp(bool show_errors)
 
 	out2 << "highest: [" << highest2.first << ", " << highest2.second << "]" << std::endl;
 
+	std::pair<char,int> lowest2 = *map2.begin();
+
+	out2 << "lowest: [" << lowest2.first << ", " << lowest2.second << "]" << std::endl;
+
 	out2 << std::endl;
 
 	do {
 		out2 << itr2->first << " => " << itr2->second << std::endl;
 	} while (map2.value_comp()(*itr2++, highest2));
+
+	itr2 = map2.begin();
+
+	do {
+		out2 << itr2->first << " => " << itr2->second << std::endl;
+	} while (map2.value_comp()(*itr2++, lowest2));
 
 	b = out2.str();
 
