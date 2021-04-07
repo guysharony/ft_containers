@@ -6,11 +6,11 @@
 #    By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 08:47:13 by gsharony          #+#    #+#              #
-#    Updated: 2021/04/05 08:47:14 by gsharony         ###   ########.fr        #
+#    Updated: 2021/04/07 12:25:38 by gsharony         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS		= 	-g -Wall -Werror -Wextra -std=c++98
+FLAGS		= 	-Wall -Werror -Wextra -std=c++98
 
 TESTS		=	tests/
 
