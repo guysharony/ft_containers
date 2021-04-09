@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/03/24 09:21:25 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:19:39 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "Algorithm.hpp"
 # include "Iterator.hpp"
 # include "TypeTraits.hpp"
+# include "Functional.hpp"
 # include "Node.hpp"
 
 namespace ft
@@ -344,35 +345,20 @@ namespace ft
 
 			void 							merge(list& x)
 			{
-				iterator					_begin = x.begin();
-				iterator					_tmp;
-
-				if (&x != this) {
-					while (_begin != x.end()) {
-						if (*(_tmp = _begin++) < 0)
-							this->push_front(*_tmp);
-						else
-							this->push_back(*_tmp);
-						x.pop_front();
-					}
-				}
+				this->merge(x, ft::less<T>());
 			}
 
 			template <class Compare>
   			void 							merge(list& x, Compare comp)
 			{
-				iterator					_begin = x.begin();
-				iterator					_tmp;
+				iterator 	_begin = begin();
+				iterator 	_x_begin = x.begin();
 
-				if (&x != this) {
-					while (_begin != x.end()) {
-						if (comp(this->front(), *(_tmp = _begin++)))
-							this->push_back(*_tmp);
-						else
-							this->push_front(*_tmp);
-						x.pop_front();
-					}
-				}
+				while (_x_begin != x.end() && _begin != end())
+					((comp(*_x_begin, *_begin)) ? splice(_begin, x, _x_begin++) : _begin++);
+					
+				while (_x_begin != x.end())
+					splice(end(), x, _x_begin++);
 			}
 
 			void 							sort()
@@ -443,6 +429,11 @@ namespace ft
 				Node<T>*	node = new Node<T>;
 				node->data = val;
 				return (node);
+			}
+
+			void							_transfer(iterator _position, iterator _first, iterator _last)
+			{
+				_position.node->_transfer(_first.node, _last.node);
 			}
 
 			void							_node_init(void)

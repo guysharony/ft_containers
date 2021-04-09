@@ -6,11 +6,12 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/07 12:54:07 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:02:55 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/List.hpp"
+#include "../include/Functional.hpp"
 #include <iostream>
 #include <string>
 #include <list>
@@ -1577,9 +1578,17 @@ static void 			merge(bool show_errors)
 	lst1b.push_back(7.1);
 	lst1b.push_back(1.4);
 
+	std::cout << "test 1" << std::endl;
+
 	out1 << print_list(lst1a) << std::endl;
 	out1 << print_list(lst1b) << std::endl;
+
+	std::cout << "test 2" << std::endl;
+
 	lst1a.merge(lst1b);
+
+	std::cout << "test 3" << std::endl;
+	
 	out1 << print_list(lst1a) << std::endl;
 	out1 << print_list(lst1b) << std::endl;
 	lst1b.push_back(2.1);
