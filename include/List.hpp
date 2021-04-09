@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 12:37:27 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 12:44:33 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ namespace ft
 				_size(0)
 			{
 				_node_init();
-				_node->data = static_cast<value_type>(this->_new_size(n));
 				
 				_init_fill(n, val);
 			}
@@ -557,7 +556,6 @@ namespace ft
 				tmp->prev = new_node;
 
 				++_size;
-				_node->data = static_cast<value_type>(this->_new_size(_size));
 			}
 
 			void							_remove(iterator pos)
@@ -571,7 +569,6 @@ namespace ft
 				_allocator.deallocate(pos.node, 1);
 
 				--_size;
-				_node->data = static_cast<value_type>(this->_new_size(_size));
 			}
 
 			size_type 						_new_size(size_type nbr)
