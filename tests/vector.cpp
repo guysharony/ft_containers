@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 09:23:47 by gsharony          #+#    #+#             */
-/*   Updated: 2021/03/23 11:02:45 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:04:56 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -445,33 +445,71 @@ static void			reserve(bool show_errors)
 	ft::vector<int>::size_type		size1;
 
 	size1 = vec1.capacity();
-	for (int i = 0; i < 100; i++)
+	out1 << "making foo grow:\n";
+	for (int i=0; i<100; ++i)
 	{
 		vec1.push_back(i);
-		if (size1 != vec1.capacity())
-		{
+		if (size1 != vec1.capacity()) {
 			size1 = vec1.capacity();
-			out1 << print_list(vec1) << std::endl;
-			out1 << "Capacity changed: " << size1 << std::endl;
+			out1 << "capacity changed: " << size1 << '\n';
 		}
 	}
+
+	ft::vector<int>					vec2;
+
+	size1 = vec2.capacity();
+	vec2.reserve(100);
+	out1 << "making bar grow:\n";
+	for (int i=0; i<100; ++i) {
+		vec2.push_back(i);
+		if (size1 != vec2.capacity()) {
+			size1 = vec2.capacity();
+			out1 << "capacity changed: " << size1 << '\n';
+		}
+	}
+
+	try {
+		vec2.reserve(vec2.max_size() * 2);
+	} catch(std::exception& e) {
+		out1 << e.what();
+	}
+	
 	a = out1.str();
 
 	std::stringstream 				out2;
-	std::vector<int>				vec2;
+	std::vector<int>				vec3;
 	std::vector<int>::size_type		size2;
 
-	size2 = vec2.capacity();
-	for (int i = 0; i < 100; i++)
+	size2 = vec3.capacity();
+	out2 << "making foo grow:\n";
+	for (int i=0; i<100; ++i)
 	{
-		vec2.push_back(i);
-		if (size2 != vec2.capacity())
-		{
-			size2 = vec2.capacity();
-			out2 << print_list(vec2) << std::endl;
-			out2 << "Capacity changed: " << size2 << std::endl;
+		vec3.push_back(i);
+		if (size2 != vec3.capacity()) {
+			size2 = vec3.capacity();
+			out2 << "capacity changed: " << size2 << '\n';
 		}
 	}
+
+	std::vector<int>				vec4;
+
+	size2 = vec4.capacity();
+	vec4.reserve(100);
+	out2 << "making bar grow:\n";
+	for (int i=0; i<100; ++i) {
+		vec4.push_back(i);
+		if (size2 != vec4.capacity()) {
+			size2 = vec4.capacity();
+			out2 << "capacity changed: " << size2 << '\n';
+		}
+	}
+
+	try {
+		vec4.reserve(vec4.max_size() * 2);
+	} catch(std::exception& e) {
+		out2 << e.what();
+	}
+	
 	b = out2.str();
 
 	std::cout << "reserve: [";

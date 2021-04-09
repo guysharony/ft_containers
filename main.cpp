@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 13:39:19 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 08:10:01 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:05:21 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		main(void)
 {
 	bool 	show_errors = true;
 	test_list(show_errors);
-	/*test_vector(show_errors);
-	test_map(show_errors);
+	test_vector(show_errors);
+	/*test_map(show_errors);
 	test_stack(show_errors);
 	test_queue(show_errors);*/
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/07 13:03:10 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:08:19 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,18 +170,21 @@ namespace ft
 
 			void 					reserve(size_type n)
 			{
-				if (this->capacity() < n)
+				if (n > this->max_size())
+					throw (std::length_error("vector::reserve"));
+				else if (this->capacity() < n)
 				{
 					pointer _nbegin = _allocator.allocate(n);
 					pointer _nend = _nbegin;
 
-					_nend = this->_copy(this->_begin, this->end, _nend);
+					_nend = this->_copy(this->_begin, this->_end, _nend);
 
 					if (this->_begin)
 						_allocator.deallocate(this->_begin, this->capacity());
 
 					this->_begin = _nbegin;
 					this->_end = _nend;
+					this->_available = this->_begin + n;
 				}
 			}
 
@@ -624,19 +627,19 @@ namespace ft
 	template <class T, class Alloc>
   	bool 	operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
-		return (lhs <= rhs);
+		return !(rhs < lhs);
 	}
 
 	template <class T, class Alloc>
   	bool 	operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
-		return (lhs > rhs);
+		return (rhs < lhs);
 	}
 
 	template <class T, class Alloc>
   	bool 	operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
-		return (lhs >= rhs);
+		return !(lhs < rhs);
 	}
 
 	template <typename T, typename Alloc>
