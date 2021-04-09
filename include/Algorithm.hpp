@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 09:59:26 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 11:36:49 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 07:03:53 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ namespace ft
 	{
 		while (first1 != last1)
 		{
-			if (first2 == last2 || *first2 - *last2)
+			if (first2 == last2 || *first2 < *first1)
 				return (false);
-			else if (*first1 - *last1)
-				return (false);
+			else if (*first1 < *first2)
+				return (true);
 			++first1;
 			++first2;
 		}

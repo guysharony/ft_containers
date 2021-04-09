@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:53:21 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:58:50 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1768,6 +1768,8 @@ void	operators(bool show_errors)
 	if (lst1 <= lst2) out1 << "a is less than or equal to b\n";
 	if (lst1 >= lst2) out1 << "a is greater than or equal to b\n";
 
+	a = out1.str();
+
 	std::stringstream		out2;
 	std::list<int> 			lst4, lst5, lst6;
 	
@@ -1789,6 +1791,8 @@ void	operators(bool show_errors)
 	if (lst6 > lst5) out2 << "c is greater than b\n";
 	if (lst4 <= lst5) out2 << "a is less than or equal to b\n";
 	if (lst4 >= lst5) out2 << "a is greater than or equal to b\n";
+
+	b = out2.str();
 
 	std::cout << "operators: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
