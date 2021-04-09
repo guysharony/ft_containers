@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 09:11:59 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 12:05:19 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ namespace ft
 				_allocator(alloc),
 				_size(0)
 			{
-				_node_init(this->_new_size(n));
-				_node_fill(n, val);
+				_node_init();
+				_node->data = static_cast<value_type>(this->_new_size(n));
+				
+				_init_fill(n, val);
 			}
 
 			template <class InputIterator>
@@ -65,7 +67,7 @@ namespace ft
 				typedef typename ft::is_integral<InputIterator>::type 	type;
 
 				_node_init();
-				this->_node_fill(first, last, type());
+				_init_fill(first, last, type());
 			}
 
 			list (const list& x)
@@ -74,13 +76,19 @@ namespace ft
 				_size(0)
 			{
 				_node_init();
-				this->_node_fill(x.begin(), x.end(), false_type());
+				_init_fill(x.begin(), x.end(), false_type());
 			}
 
 			~list()
 			{
-				this->clear();
+				this->_clear();
 				delete _node;
+			}
+
+			list& 							operator=(const list & x)
+			{
+				this->assign(x.begin(), x.end());
+				return (*this);
 			}
 
 			iterator						begin(void)
@@ -169,7 +177,7 @@ namespace ft
 
 			void 							assign(size_type n, const value_type& val)
 			{
-				this->_node_fill(n, val, false_type());
+				this->_node_fill(n, val, true_type());
 			}
 
 			void 							push_front(const value_type& val)
@@ -250,8 +258,9 @@ namespace ft
 
 			void 							clear(void)
 			{
-				while (_size)
-					pop_back();
+				this->_clear();
+				_node->next = _node;
+				_node->prev = _node;
 			}
 
 			void 							splice(iterator position, list& x)
@@ -420,35 +429,71 @@ namespace ft
 			}
 
 		private:
-			allocator_type					_allocator;
-			Node<T>							*_node;
-			size_type						_size;
+			typedef typename allocator_type::template rebind<Node<T> >::other 	node_allocator;
+			typedef typename node_allocator::pointer							_node_pointer;
+			
+			node_allocator														_allocator;
+			Node<T>																*_node;
+			size_type															_size;
 
-			Node<T>*						_create_node(void)
+			void 							_clear(void)
 			{
-				Node<T>*	node = new Node<T>();
+				Node<T> *tmp = _node->next;
+				Node<T> *next_tmp;
+				while (tmp != _node)
+				{
+					next_tmp = tmp->next;
+					_allocator.destroy(tmp);
+					_allocator.deallocate(tmp, 1);
+					tmp = next_tmp;
+				}
+			}
+
+			_node_pointer						_create_node(void)
+			{
+				_node_pointer	node = _allocator.allocate(1);
+				_allocator.construct(node, Node<T>());
 				return (node);
 			}
 
-			Node<T>*						_create_node(const value_type& val)
+			_node_pointer						_create_node(const value_type& val)
 			{
-				Node<T>*	node = new Node<T>;
-				node->data = val;
+				_node_pointer	node = _allocator.allocate(1);
+				_allocator.construct(node, Node<T>(val));
 				return (node);
 			}
 
 			void							_node_init(void)
 			{
-				_node = new Node<T>;
+				_node = _create_node();
 				_node->next = _node;
 				_node->prev = _node;
 			}
 
 			void							_node_init(const value_type& val)
 			{
-				_node = new Node<T>(val);
+				_node = _create_node(val);
 				_node->next = _node;
 				_node->prev = _node;
+			}
+
+			template <class InputIterator>
+			void							_init_fill(InputIterator first, InputIterator last, true_type)
+			{
+				_init_fill(static_cast<size_type>(first), last);
+			}
+
+			template <class InputIterator>
+			void							_init_fill(InputIterator first, InputIterator last, false_type)
+			{
+				for (; first != last; ++first)
+					push_back(*first);
+			}
+
+			void							_init_fill(size_type n, const value_type& val)
+			{
+				for (; n; --n)
+					push_back(val);
 			}
 
 			void							_node_fill(size_type n, const value_type& val, true_type)
@@ -511,8 +556,7 @@ namespace ft
 				tmp->prev = new_node;
 
 				++_size;
-
-				_node->data = _new_size(_size);
+				_node->data = static_cast<value_type>(this->_new_size(_size));
 			}
 
 			void							_remove(iterator pos)
@@ -522,11 +566,11 @@ namespace ft
 				pos.node->prev->next = _tmp;
 				_tmp->prev = pos.node->prev;
 
-				delete pos.node;
+				_allocator.destroy(pos.node);
+				_allocator.deallocate(pos.node, 1);
 
 				--_size;
-
-				_node->data = _new_size(_size);
+				_node->data = static_cast<value_type>(this->_new_size(_size));
 			}
 
 			size_type 						_new_size(size_type nbr)

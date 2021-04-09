@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 15:29:27 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 07:31:50 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:27:30 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,14 @@ namespace ft
 
 			list_iterator() : node() {}
 			list_iterator(ft::Node<T>* src) : node(src) {}
-			list_iterator(list_iterator const & src) {*this = src;}
-			~list_iterator() {}
+			list_iterator(list_iterator const & src) : node(src.node) {}
+			virtual ~list_iterator() {}
+
+			list_iterator			&operator=(const list_iterator &src)
+			{
+				this->node = src.node;
+				return (*this);
+			}
 
 			reference				operator*() const
 			{
@@ -140,8 +146,9 @@ namespace ft
 
 			list_const_iterator() : node() {}
 			list_const_iterator(ft::Node<T>* src) : node(src) {}
-			list_const_iterator(list_const_iterator const & src) {*this = src;}
-			~list_const_iterator() {}
+			list_const_iterator(list_iterator<T> const & src) : node(src.node) {}
+			list_const_iterator(list_const_iterator const & src) : node(src.node) {}
+			virtual ~list_const_iterator() {}
 
 			reference					operator*() const
 			{
