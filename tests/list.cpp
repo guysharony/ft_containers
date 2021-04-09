@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:34:41 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:53:21 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1741,6 +1741,69 @@ static void 			reverse(bool show_errors)
 	}
 }
 
+void	operators(bool show_errors)
+{
+	std::string a;
+	std::string b;
+
+	std::stringstream		out1;
+	ft::list<int> 			lst1, lst2, lst3;
+	
+	lst1.push_back(10);
+	lst1.push_back(20);
+	lst1.push_back(30);
+
+	lst2.push_back(10);
+	lst2.push_back(20);
+	lst2.push_back(30);
+
+	lst3.push_back(30);
+	lst3.push_back(20);
+	lst3.push_back(10);
+
+	if (lst1 == lst2) out1 << "a and b are equal\n";
+	if (lst2 != lst3) out1 << "b and c are not equal\n";
+	if (lst2 < lst3) out1 << "b is less than c\n";
+	if (lst3 > lst2) out1 << "c is greater than b\n";
+	if (lst1 <= lst2) out1 << "a is less than or equal to b\n";
+	if (lst1 >= lst2) out1 << "a is greater than or equal to b\n";
+
+	std::stringstream		out2;
+	std::list<int> 			lst4, lst5, lst6;
+	
+	lst4.push_back(10);
+	lst4.push_back(20);
+	lst4.push_back(30);
+
+	lst5.push_back(10);
+	lst5.push_back(20);
+	lst5.push_back(30);
+
+	lst6.push_back(30);
+	lst6.push_back(20);
+	lst6.push_back(10);
+
+	if (lst4 == lst5) out2 << "a and b are equal\n";
+	if (lst5 != lst6) out2 << "b and c are not equal\n";
+	if (lst5 < lst6) out2 << "b is less than c\n";
+	if (lst6 > lst5) out2 << "c is greater than b\n";
+	if (lst4 <= lst5) out2 << "a is less than or equal to b\n";
+	if (lst4 >= lst5) out2 << "a is greater than or equal to b\n";
+
+	std::cout << "operators: [";
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
+	if (show_errors)
+	{
+		if (a.compare(b)) {
+			std::cout << "---" << std::endl;
+			std::cout << a;
+			std::cout << "-" << std::endl;
+			std::cout << b;
+			std::cout << "---" << std::endl;
+		}
+	}
+}
+
 void	test_list(bool show_errors)
 {
 	std::cout << "<=== Testing list ===>" << std::endl;
@@ -1770,5 +1833,6 @@ void	test_list(bool show_errors)
 	merge(show_errors);
 	sort(show_errors);
 	reverse(show_errors);
+	operators(show_errors);
 	std::cout << std::endl;
 }

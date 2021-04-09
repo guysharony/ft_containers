@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:41:45 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:52:37 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -556,19 +556,19 @@ namespace ft
 	template <class T, class Alloc>
   	bool 	operator<=(const ft::list<T,Alloc>& lhs, const ft::list<T,Alloc>& rhs)
 	{
-		return (lhs <= rhs);
+		return !(rhs < lhs);
 	}
 
 	template <class T, class Alloc>
   	bool 	operator>(const ft::list<T,Alloc>& lhs, const ft::list<T,Alloc>& rhs)
 	{
-		return (lhs > rhs);
+		return (rhs < lhs);
 	}
 
 	template <class T, class Alloc>
   	bool 	operator>=(const ft::list<T,Alloc>& lhs, const ft::list<T,Alloc>& rhs)
 	{
-		return (lhs >= rhs);
+		return !(lhs < rhs);
 	}
 
 	template <typename T, typename Alloc>
