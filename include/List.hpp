@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:19:39 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:41:45 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,22 +105,22 @@ namespace ft
 
 			reverse_iterator 				rbegin(void)
 			{
-				return (reverse_iterator(_node->next));
+				return (reverse_iterator(end()));
 			}
 
 			const_reverse_iterator			rbegin(void) const
 			{
-				return (const_reverse_iterator(_node->next));
+				return (const_reverse_iterator(end()));
 			}
 
 			reverse_iterator 				rend(void)
 			{
-				return (reverse_iterator(_node));
+				return (reverse_iterator(begin()));
 			}
 
 			const_reverse_iterator 			rend(void) const
 			{
-				return (const_reverse_iterator(_node));
+				return (const_reverse_iterator(begin()));
 			}
 
 			size_type						size(void) const
@@ -355,8 +355,11 @@ namespace ft
 				iterator 	_x_begin = x.begin();
 
 				while (_x_begin != x.end() && _begin != end())
-					((comp(*_x_begin, *_begin)) ? splice(_begin, x, _x_begin++) : _begin++);
-					
+					if (comp(*_x_begin, *_begin))
+						splice(_begin, x, _x_begin++);
+					else
+						_begin++;
+
 				while (_x_begin != x.end())
 					splice(end(), x, _x_begin++);
 			}

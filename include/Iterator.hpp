@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 15:29:27 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/05 11:20:18 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:36:31 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ namespace ft
 			template <class Iter>
   			reverse_iterator (const reverse_iterator<Iter>& rev_it) : _iterator(rev_it.base()) {}
 
-			~reverse_iterator() {}
+			virtual ~reverse_iterator() {}
 
 			iterator_type 		base(void) const
 			{
@@ -235,7 +235,7 @@ namespace ft
 			reverse_iterator  	operator++(int)
 			{
 				reverse_iterator	tmp = *this;
-				++(*this);
+				--(*this);
 				return (tmp);
 			}
 
@@ -259,7 +259,7 @@ namespace ft
 			reverse_iterator  	operator--(int)
 			{
 				reverse_iterator	tmp = *this;
-				--(*this);
+				++(*this);
 				return (tmp);
 			}
 

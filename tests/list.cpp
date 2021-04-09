@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:02:55 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 06:34:41 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,19 +163,28 @@ static void			rbegin(bool show_errors)
 
 	std::stringstream 	out1;
 	ft::list<int>		lst1;
+	
 	for (int i = 1; i < 6; i++)
 		lst1.push_back(i);
-	out1 << print_list(lst1) << std::endl;
+
+	for (ft::list<int>::reverse_iterator it1 = lst1.rbegin(); it1 != lst1.rend(); ++it1)
+    	out1 << ' ' << *it1;
+
 	out1 << "begins with " << *lst1.rbegin() << std::endl;
 	a = out1.str();
 
 	std::stringstream 	out2;
 	std::list<int>		lst2;
+
 	for (int i = 1; i < 6; i++)
 		lst2.push_back(i);
-	out2 << print_list(lst2) << std::endl;
+
+	for (std::list<int>::reverse_iterator it2 = lst2.rbegin(); it2 != lst2.rend(); ++it2)
+    	out2 << ' ' << *it2;
+
 	out2 << "begins with " << *lst2.rbegin() << std::endl;
 	b = out2.str();
+	
 	std::cout << "rbegin: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors && a.compare(b))
@@ -1578,16 +1587,10 @@ static void 			merge(bool show_errors)
 	lst1b.push_back(7.1);
 	lst1b.push_back(1.4);
 
-	std::cout << "test 1" << std::endl;
-
 	out1 << print_list(lst1a) << std::endl;
 	out1 << print_list(lst1b) << std::endl;
 
-	std::cout << "test 2" << std::endl;
-
 	lst1a.merge(lst1b);
-
-	std::cout << "test 3" << std::endl;
 	
 	out1 << print_list(lst1a) << std::endl;
 	out1 << print_list(lst1b) << std::endl;
