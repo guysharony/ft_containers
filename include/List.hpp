@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 12:05:19 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 12:37:27 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -443,6 +443,7 @@ namespace ft
 				while (tmp != _node)
 				{
 					next_tmp = tmp->next;
+					--_size;
 					_allocator.destroy(tmp);
 					_allocator.deallocate(tmp, 1);
 					tmp = next_tmp;
