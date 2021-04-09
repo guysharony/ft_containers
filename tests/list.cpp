@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:58:50 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 07:28:41 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1808,6 +1808,61 @@ void	operators(bool show_errors)
 	}
 }
 
+void	reverse_iterator(bool show_errors)
+{
+	std::string a;
+	std::string b;
+	
+	std::stringstream					out1;
+	ft::list<float> 					lst1;
+
+	for (int i = 0; i < 7; i++)
+		lst1.push_back(i * 3.75f);
+
+	ft::list<float>::reverse_iterator	rit1(lst1.begin());
+	ft::list<float>::reverse_iterator	rit2(lst1.end());
+
+	rit1--;
+	rit2--;
+	while (rit1 != rit2)
+	{
+		out1 << *rit1 << ' ' << '\n';
+		--rit1;
+	}
+	a = out1.str();
+
+	std::stringstream					out2;
+	std::list<float> 					lst2;
+
+	for (int i = 0; i < 7; i++)
+		lst2.push_back(i * 3.75f);
+
+	std::list<float>::reverse_iterator	rit3(lst2.begin());
+	std::list<float>::reverse_iterator	rit4(lst2.end());
+
+	rit3--;
+	rit4--;
+	while (rit3 != rit4)
+	{
+		out2 << *rit3 << ' ' << '\n';
+		--rit3;
+	}
+	b = out2.str();
+
+	std::cout << "reverse_iterator: [";
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
+	if (show_errors)
+	{
+		if (a.compare(b)) {
+			std::cout << "---" << std::endl;
+			std::cout << a;
+			std::cout << "-" << std::endl;
+			std::cout << b;
+			std::cout << "---" << std::endl;
+		}
+	}
+}
+
 void	test_list(bool show_errors)
 {
 	std::cout << "<=== Testing list ===>" << std::endl;
@@ -1838,5 +1893,6 @@ void	test_list(bool show_errors)
 	sort(show_errors);
 	reverse(show_errors);
 	operators(show_errors);
+	reverse_iterator(show_errors);
 	std::cout << std::endl;
 }
