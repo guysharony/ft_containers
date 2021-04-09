@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 11:43:16 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:15:40 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ static void			end(bool show_errors)
 	for (int i = -5; i < 1; i++)
 		lst1.push_back(i);
 	out1 << print_list(lst1) << std::endl;
-	out1 << "ends with " << *lst1.end() << std::endl;
+	out1 << "ends with " << *(lst1.end()--) << std::endl;
 	a = out1.str();
 
 	std::stringstream 	out2;
@@ -168,7 +168,7 @@ static void			end(bool show_errors)
 	for (int i = -5; i < 1; i++)
 		lst2.push_back(i);
 	out2 << print_list(lst2) << std::endl;
-	out2 << "ends with " << *lst2.end() << std::endl;
+	out2 << "ends with " << *(lst2.end()--) << std::endl;
 	b = out2.str();
 	std::cout << "end: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
@@ -1055,7 +1055,6 @@ static void			erase(bool show_errors)
 	++it3;
 	out3 << "iterator points to " << *it3 << std::endl;
 	it3 = lst3.erase(it3, lst3.end());
-	out3 << "iterator points to " << *it3 << std::endl;
 	out3 << print_list(lst3) << std::endl;
 	c = out3.str();
 
@@ -1073,7 +1072,6 @@ static void			erase(bool show_errors)
 	++it4;
 	out4 << "iterator points to " << *it4 << std::endl;
 	it4 = lst4.erase(it4, lst4.end());
-	out4 << "iterator points to " << *it4 << std::endl;
 	out4 << print_list(lst4) << std::endl;
 	d = out4.str();
 
