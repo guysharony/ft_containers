@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 06:56:59 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:11:59 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,13 +164,11 @@ namespace ft
   			void 							assign(InputIterator first, InputIterator last)
 			{
 				typedef typename ft::is_integral<InputIterator>::type	type;
-				this->clear();
 				this->_node_fill(first, last, type());
 			}
 
 			void 							assign(size_type n, const value_type& val)
 			{
-				this->clear();
 				this->_node_fill(n, val, false_type());
 			}
 
@@ -210,7 +208,7 @@ namespace ft
     		void 							insert(iterator position, InputIterator first, InputIterator last)
 			{
 				typedef typename ft::is_integral<InputIterator>::type type;
-				this->_node_fill(position, first, last, type());
+				this->_node_insert(position, first, last, type());
 			}
 
 			iterator 						erase(iterator position)
@@ -229,9 +227,14 @@ namespace ft
 
 			void 							swap(list& x)
 			{
-				Node<T>*					_tmp_node = x._node;
+				Node<T>*					_x_node = x._node;
+				size_type					_x_size = x._size;
+
 				x._node = this->_node;
-				this->_node = _tmp_node;
+				x._size = this->_size;
+
+				this->_node = _x_node;
+				this->_size = _x_size;
 			}
 
 			void 							resize(size_type n, value_type val = value_type())
@@ -247,7 +250,7 @@ namespace ft
 
 			void 							clear(void)
 			{
-				while (this->size() > 0)
+				while (_size)
 					pop_back();
 			}
 
@@ -434,11 +437,6 @@ namespace ft
 				return (node);
 			}
 
-			void							_transfer(iterator _position, iterator _first, iterator _last)
-			{
-				_position.node->_transfer(_first.node, _last.node);
-			}
-
 			void							_node_init(void)
 			{
 				_node = new Node<T>;
@@ -455,15 +453,23 @@ namespace ft
 
 			void							_node_fill(size_type n, const value_type& val, true_type)
 			{
-				while (n--)
-					push_back(val);
+				iterator i = begin();
+				for (; i != end() && n; ++i, --n)
+					*i = val;
+				if (n) insert(end(), n, val);
+				else erase(i, end());
 			}
 
 			template <class InputIterator>
 			void							_node_fill(InputIterator first, InputIterator last, false_type)
 			{
-				while (first != last)
-					push_back(*(first++));
+				iterator first1 = begin();
+				iterator last1 = end();
+
+				for (; first1 != last1 && first != last; ++first1, ++first)
+					*first1 = *first;
+				if (first == last) erase(first1, last1);
+				else insert(last1, first, last);
 			}
 
 			void							_node_fill(iterator pos, size_type n, const value_type& val, true_type)
@@ -474,6 +480,19 @@ namespace ft
 
 			template <class InputIterator>
 			void							_node_fill(iterator pos, InputIterator first, InputIterator last, false_type)
+			{
+				while (first != last)
+					this->_insert(pos, *(first++));
+			}
+
+			void							_node_insert(iterator pos, size_type n, const value_type& val, true_type)
+			{
+				while (n--)
+					this->_insert(pos, val);
+			}
+
+			template <class InputIterator>
+			void							_node_insert(iterator pos, InputIterator first, InputIterator last, false_type)
 			{
 				while (first != last)
 					this->_insert(pos, *(first++));

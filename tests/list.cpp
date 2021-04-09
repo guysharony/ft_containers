@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 07:28:41 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:06:23 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -527,73 +527,53 @@ static void			assign(bool show_errors)
 	std::string	a;
 	std::string	b;
 
-	std::string	c;
-	std::string	d;
-
-	std::string	e;
-	std::string	f;
-
-	int 	array[] = {-42, 56, 0, 5, -1};
-
+	int myints[] = {1776,7,4};
+	
 	std::stringstream 	out1;
 	ft::list<int>		lst1;
-	lst1.assign(0, 15);
-	out1 << print_list(lst1) << std::endl;
+	ft::list<int>		lst2;
+
+	lst1.assign(7,100);
+	out1 << print_list(lst1);
+
+	lst2.assign(lst1.begin(), lst1.end());
+	out1 << print_list(lst2);
+	
+	lst1.assign(myints,myints+3);
+	out1 << print_list(lst2);
+
+	out1 << "Size of first: " << int (lst1.size()) << '\n';
+	out1 << "Size of second: " << int (lst2.size()) << '\n';
+
 	a = out1.str();
 
 	std::stringstream 	out2;
-	std::list<int>		lst2;
-	lst2.assign(0, 15);
-	out2 << print_list(lst2) << std::endl;
+	std::list<int>		lst3;
+	std::list<int>		lst4;
+
+	lst3.assign(7,100);
+	out2 << print_list(lst3);
+
+	lst4.assign(lst3.begin(), lst3.end());
+	out2 << print_list(lst4);
+	
+	lst3.assign(myints,myints+3);
+	out2 << print_list(lst4);
+
+	out2 << "Size of first: " << int (lst3.size()) << '\n';
+	out2 << "Size of second: " << int (lst4.size()) << '\n';
+
 	b = out2.str();
 
-	std::stringstream 	out3;
-	ft::list<int>		lst3;
-	lst3.assign(lst1.begin(), lst1.end());
-	out3 << print_list(lst3) << std::endl;
-	c = out3.str();
-
-	std::stringstream 	out4;
-	std::list<int>		lst4;
-	lst4.assign(lst2.begin(), lst2.end());
-	out4 << print_list(lst4) << std::endl;
-	d = out4.str();
-
-	std::stringstream 	out5;
-	ft::list<int>		lst5;
-	lst5.assign(array, array + 5);
-	out5 << print_list(lst5) << std::endl;
-	e = out5.str();
-
-	std::stringstream 	out6;
-	std::list<int>		lst6;
-	lst6.assign(array, array + 5);
-	out6 << print_list(lst6) << std::endl;
-	f = out6.str();
-
 	std::cout << "assign: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "][" << (!(c.compare(d)) ? "ok" : "error") << "][" << (!(e.compare(f)) ? "ok" : "error") << "]" << std::endl;
+	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
 	{
 		if (a.compare(b)) {
-			std::cout << "- 1/3 -" << std::endl;
+			std::cout << "---" << std::endl;
 			std::cout << a;
 			std::cout << "-" << std::endl;
 			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-		if (c.compare(d)) {
-			std::cout << "- 2/3 -" << std::endl;
-			std::cout << c;
-			std::cout << "-" << std::endl;
-			std::cout << d;
-			std::cout << "---" << std::endl;
-		}
-		if (e.compare(f)) {
-			std::cout << "- 3/3 -" << std::endl;
-			std::cout << e;
-			std::cout << "-" << std::endl;
-			std::cout << f;
 			std::cout << "---" << std::endl;
 		}
 	}
@@ -1098,36 +1078,40 @@ static void 			swap(bool show_errors)
 	std::string	b;
 
 	std::stringstream	out1;
-	ft::list<int>		lst1;
-	ft::list<int>		lst2;
+	ft::list<int> 		first1(3,100);
+	ft::list<int> 		second1(5,200);
 
-	for (int i = -50; i < 0; i++)
-		lst1.push_back(i);
-	for (float i = 0; i < 50; i++)
-		lst2.push_back(i);
-	out1 << "lst1: " << print_list(lst1) << std::endl;
-	out1 << "lst2: " << print_list(lst2) << std::endl;
-	out1 << "swapping lst1 and lst2" << std::endl;
-	lst1.swap(lst2);
-	out1 << "lst1: " << print_list(lst1) << std::endl;
-	out1 << "lst2: " << print_list(lst2) << std::endl;
+	first1.swap(second1);
+
+	out1 << "first contains:";
+	for (ft::list<int>::iterator it = first1.begin(); it != first1.end(); it++)
+		out1 << ' ' << *it;
+	out1 << '\n';
+
+	out1 << "second contains:";
+	for (ft::list<int>::iterator it = second1.begin(); it != second1.end(); it++)
+		out1 << ' ' << *it;
+	out1 << '\n';
+
 	a = out1.str();
 
 	std::stringstream	out2;
-	std::list<int>		lst3;
-	std::list<int>		lst4;
+	std::list<int> 		first2(3,100);
+	std::list<int> 		second2(5,200);
 
-	for (int i = -50; i < 0; i++)
-		lst3.push_back(i);
-	for (float i = 0; i < 50; i++)
-		lst4.push_back(i);
-	out2 << "lst1: " << print_list(lst3) << std::endl;
-	out2 << "lst2: " << print_list(lst4) << std::endl;
-	out2 << "swapping lst1 and lst2" << std::endl;
-	lst3.swap(lst4);
-	out2 << "lst1: " << print_list(lst3) << std::endl;
-	out2 << "lst2: " << print_list(lst4) << std::endl;
+	first2.swap(second2);
+
+	out2 << "first contains:";
+	for (std::list<int>::iterator it = first2.begin(); it != first2.end(); it++)
+		out2 << ' ' << *it;
+	out2 << '\n';
+
+	out2 << "second contains:";
+	for (std::list<int>::iterator it = second2.begin(); it != second2.end(); it++)
+		out2 << ' ' << *it;
+	out2 << '\n';
 	b = out2.str();
+
 	std::cout << "swap: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
@@ -1197,29 +1181,64 @@ static void 			clear(bool show_errors)
 	std::string a;
 	std::string b;
 
-	std::stringstream	out1;
-	ft::list<int>		lst1;
+	std::stringstream		out1;
+	ft::list<int> 			lst1;
+	ft::list<int>::iterator it1;
 
-	for (int i = -5; i < 5; i++)
-		lst1.push_back(i);
-	out1 << print_list(lst1) << std::endl;
+	lst1.push_back(100);
+	lst1.push_back(200);
+	lst1.push_back(300);
+
+	out1 << "mylist contains:";
+	for (it1 = lst1.begin(); it1 != lst1.end(); ++it1)
+		out1 << ' ' << *it1;
+	out1 << '\n';
+
 	lst1.clear();
-	out1 << print_list(lst1) << std::endl;
-	lst1.clear();
-	out1 << print_list(lst1) << std::endl;
+
+	out1 << '[';
+	for (it1 = lst1.begin(); it1 != lst1.end(); ++it1)
+		out1 << ' ' << *it1;
+	out1 << "]\n";
+	
+	lst1.push_back(1101);
+	lst1.push_back(2202);
+
+	out1 << "mylist contains:";
+	for (it1 = lst1.begin(); it1 != lst1.end(); ++it1)
+		out1 << ' ' << *it1;
+	out1 << '\n';
 	a = out1.str();
 
-	std::stringstream	out2;
-	std::list<int>		lst2;
+	std::stringstream			out2;
+	std::list<int> 				lst2;
+	std::list<int>::iterator 	it2;
 
-	for (int i = -5; i < 5; i++)
-		lst2.push_back(i);
-	out2 << print_list(lst2) << std::endl;
+	lst2.push_back(100);
+	lst2.push_back(200);
+	lst2.push_back(300);
+
+	out2 << "mylist contains:";
+	for (it2 = lst2.begin(); it2 != lst2.end(); ++it2)
+		out2 << ' ' << *it2;
+	out2 << '\n';
+
 	lst2.clear();
-	out2 << print_list(lst2) << std::endl;
-	lst2.clear();
-	out2 << print_list(lst2) << std::endl;
+
+	out2 << '[';
+	for (it2 = lst2.begin(); it2 != lst2.end(); ++it2)
+		out2 << ' ' << *it2;
+	out2 << "]\n";
+	
+	lst2.push_back(1101);
+	lst2.push_back(2202);
+
+	out2 << "mylist contains:";
+	for (it2 = lst2.begin(); it2 != lst2.end(); ++it2)
+		out2 << ' ' << *it2;
+	out2 << '\n';
 	b = out2.str();
+
 	std::cout << "clear: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
 	if (show_errors)
