@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 15:29:27 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/10 08:52:23 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/10 09:51:48 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -430,38 +430,38 @@ namespace ft
 			Iterator			_iterator;
 	};
 
-	template <class Iterator>
-  	bool 	operator==(const random_iterator<Iterator>& lhs, const random_iterator<Iterator>& rhs)
+	template <typename ItFirst, typename ItSecond>
+  	bool 	operator==(const random_iterator<ItFirst>& lhs, const random_iterator<ItSecond>& rhs)
 	{
 		return (lhs.base() == rhs.base());
 	}
 
-	template <class Iterator>
-  	bool 	operator!=(const random_iterator<Iterator>& lhs, const random_iterator<Iterator>& rhs)
+	template <typename ItFirst, typename ItSecond>
+  	bool 	operator!=(const random_iterator<ItFirst>& lhs, const random_iterator<ItSecond>& rhs)
 	{
 		return (lhs.base() != rhs.base());
 	}
 
-	template <class Iterator>
-  	bool 	operator<(const random_iterator<Iterator>& lhs, const random_iterator<Iterator>& rhs)
+	template <typename ItFirst, typename ItSecond>
+  	bool 	operator<(const random_iterator<ItFirst>& lhs, const random_iterator<ItSecond>& rhs)
 	{
 		return (lhs.base() < rhs.base());
 	}
 
-	template <class Iterator>
-  	bool 	operator<=(const random_iterator<Iterator>& lhs, const random_iterator<Iterator>& rhs)
+	template <typename ItFirst, typename ItSecond>
+  	bool 	operator<=(const random_iterator<ItFirst>& lhs, const random_iterator<ItSecond>& rhs)
 	{
 		return (lhs.base() <= rhs.base());
 	}
 
-	template <class Iterator>
-  	bool 	operator>(const random_iterator<Iterator>& lhs, const random_iterator<Iterator>& rhs)
+	template <typename ItFirst, typename ItSecond>
+  	bool 	operator>(const random_iterator<ItFirst>& lhs, const random_iterator<ItSecond>& rhs)
 	{
 		return (lhs.base() <= rhs.base());
 	}
 
-	template <class Iterator>
-  	bool 	operator>=(const random_iterator<Iterator>& lhs, const random_iterator<Iterator>& rhs)
+	template <typename ItFirst, typename ItSecond>
+  	bool 	operator>=(const random_iterator<ItFirst>& lhs, const random_iterator<ItSecond>& rhs)
 	{
 		return (lhs.base() >= rhs.base());
 	}
