@@ -6,32 +6,47 @@
 #    By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 12:41:21 by gsharony          #+#    #+#              #
-#    Updated: 2021/04/07 12:41:21 by gsharony         ###   ########.fr        #
+#    Updated: 2021/04/10 21:38:30 by gsharony         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS		= 	-Wall -Werror -Wextra -std=c++98
+CXX							=	clang++
 
-TESTS		=	tests/
+NAME						=	ft_containers
 
-FILES		= 	main.cpp \
-				$(TESTS)list.cpp $(TESTS)vector.cpp $(TESTS)map.cpp $(TESTS)stack.cpp $(TESTS)queue.cpp
+FLAGS						=	-Wall -Wextra -Werror --std=c++98
 
-OBJS		= 	$(FILES:.cpp=.o)
+INCLUDES_DIRECTORY			=	./include/
 
-EXE			= 	ft_containers
+OBJECTS_DIRECTORY 			=	./objects/
 
-all:		$(EXE)
+SOURCES_DIRECTORY			=	./tests/
 
-$(EXE):		$(OBJS)
-			clang++ $(FLAGS) -o $(EXE) $(OBJS)
+SOURCES_FILES				=	main.cpp \
+								list.cpp \
+								map.cpp \
+								queue.cpp \
+								stack.cpp \
+								vector.cpp \
+
+OBJECTS						= 	$(addprefix $(OBJECTS_DIRECTORY),$(SOURCES_FILES:.cpp=.o));
+
+
+$(OBJECTS_DIRECTORY)%.o: 	$(SOURCES_DIRECTORY)%.cpp
+							@mkdir -p $(OBJECTS_DIRECTORY)
+							@$(CXX) $(FLAGS) -I $(INCLUDES_DIRECTORY) -c -o $@ $<
+
+$(NAME):					$(OBJECTS)
+							@$(CXX) $(FLAGS) -o $(NAME) $(OBJECTS)
+
+all: 						$(NAME)
 
 clean:
-			rm $(OBJS)
+							@rm -rf $(OBJECTS_DIRECTORY)
 
-fclean:		clean
-			rm $(EXE)
+fclean: 					clean
+							@rm -f $(NAME)
 
-re:			fclean all
+re: 						fclean all
 
-.PHONY:		all clean fclean
+.PHONY: 					temporary, norme, clean

@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/10 18:29:12 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/10 20:53:11 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ namespace ft
 
 			void 					resize(size_type n, value_type val = value_type())
 			{
+				if (n > this->max_size())
+					throw (std::length_error("vector::resize"));
 				if (n < size())
 				{
 					while (this->size() > n)
@@ -172,13 +174,13 @@ namespace ft
 				if (n > max_size()) throw std::length_error("vector::reserve");
 				if (capacity() < n)
 				{
-					pointer _nbegin = _allocator.allocate(n);
-					pointer _nend = _nbegin;
+					pointer _nbegin(_allocator.allocate(n));
+					pointer _nend(_nbegin);
 
 					_nend = _copy(this->_begin, this->_end, _nend);
 
-					if (this->_begin)
-						_allocator.deallocate(this->_begin, this->capacity());
+					clear();
+					_allocator.deallocate(this->_begin, this->capacity());
 
 					this->_begin = _nbegin;
 					this->_end = _nend;
@@ -188,12 +190,12 @@ namespace ft
 
 			reference 				operator[](size_type n)
 			{
-				return *(this->_begin + n);
+				return *(begin() + n);
 			}
 
 			const_reference 		operator[](size_type n) const
 			{
-				return *(this->_begin + n);
+				return *(begin() + n);
 			}
 
 			reference 				at(size_type n)
@@ -245,14 +247,8 @@ namespace ft
 
 			void 					push_back(const value_type& val)
 			{
-				if (this->_end != this->_available)
-				{
-					this->_insert_end(val);
-				}
-				else
-				{
-					this->_insert(end(), val);
-				}
+				if (this->_end != this->_available) this->_insert_end(val);
+				else this->_insert(end(), val);
 			}
 
 			void 					pop_back()
@@ -265,10 +261,9 @@ namespace ft
 			{
 				difference_type _len = position - begin();
 
-				if (this->_end != this->_available && position == end())
-					this->_insert_end(val);
-				else
-					this->_insert(position, val);
+				if (this->_end != this->_available && position == end()) this->_insert_end(val);
+				else this->_insert(position, val);
+				
 				return (iterator(this->_begin + _len));
 			}
 
@@ -371,8 +366,7 @@ namespace ft
 
 			void					_remove_end(size_type n)
 			{
-				for (size_type i = n; i < this->size(); i++)
-					_allocator.destroy(this->_begin + i);
+				for (size_type i = n; i < this->size(); i++) _allocator.destroy(this->_begin + i);
 				this->_end -= n;
 			}
 
@@ -385,10 +379,7 @@ namespace ft
 					value_type _tmp = val;
 					*position = _tmp;
 				}
-				else
-				{
-					this->_insert_new(position, 1, val);
-				}
+				else this->_insert_new(position, 1, val);
 			}
 
 			template <class InputIterator>
@@ -397,27 +388,19 @@ namespace ft
 				size_type _len = last - first;
 
 				this->clear();
-				if (this->capacity() > _len)
-					this->_end = this->_copy(first, last, this->_end);
+				if (this->capacity() > _len) this->_end = this->_copy(first, last, this->_end);
 				else
-				{
 					while (first < last)
 						push_back(*(first++));
-				}
 			}
 
 			void					_assign(size_type n, const value_type& val, true_type)
 			{
 				this->clear();	
-				if (this->capacity() > n)
-					this->_end = this->_copy(this->_end, n, val);
+				if (this->capacity() > n) this->_end = this->_copy(this->_end, n, val);
 				else
-				{
 					for (; n; --n)
-					{
 						push_back(val);
-					}
-				}
 			}
 
 			void					_insert_new(iterator position, size_type n, const value_type & val)
@@ -426,21 +409,33 @@ namespace ft
 
 				size_type _len_b = position - begin();
 				
-				pointer _nbegin = _allocator.allocate(_len);
-				pointer _nend = _nbegin;
-
+				pointer _nbegin(_allocator.allocate(_len));
+				pointer _nend(_nbegin);
+				
 				this->_copy(_nbegin + _len_b, n, val);
-				_nend = 0;
 				_nend = this->_copy(this->_begin, position.base(), _nbegin);
 				_nend += n;
 				_nend = this->_copy(position.base(), this->_end, _nend);
 
-				clear();
-				_allocator.deallocate(this->_begin, this->_available - this->_begin);
+				_clear(_begin, _end);
+				_allocator.deallocate(_begin, this->capacity());
 
 				this->_begin = _nbegin;
 				this->_end = _nend;
 				this->_available = _nbegin + _len;
+			}
+
+			void					_clear(pointer first, pointer last)
+			{
+				try
+				{
+					for (; first != last; first++)
+						_allocator.destroy(first);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
 			}
 
 			template <class InputIterator>
@@ -448,8 +443,8 @@ namespace ft
 			{
 				size_type _len = this->size() + ((this->size() > size_type(last - first)) ? this->size() : size_type(last - first));
 				
-				pointer _nbegin = _allocator.allocate(_len);
-				pointer _nend = _nbegin;
+				pointer _nbegin(_allocator.allocate(_len));
+				pointer _nend(_nbegin);
 
 				_nend = this->_copy(this->_begin, position.base(), _nbegin);
 				_nend = this->_copy(first, last, _nend);
@@ -585,10 +580,16 @@ namespace ft
 			{
 				pointer	_tmp = first;
 				
-				for (; n > 0; --n, ++_tmp)
+				try
 				{
-					_allocator.construct(&(*_tmp), val);
+					for (; n > 0; --n, ++_tmp)
+						_allocator.construct(&(*_tmp), val);
 				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
+					
 				return (_tmp);
 			}
 
@@ -596,8 +597,16 @@ namespace ft
 			{
 				pointer	_tmp = result;
 				
-				for (; first != last; ++first, (void)++_tmp)
-					_allocator.construct(&(*_tmp), *first);
+				try
+				{
+					for (; first != last; ++first, (void)++_tmp)
+						_allocator.construct(&(*_tmp), *first);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
+				
 				return (_tmp);
 			}
 
