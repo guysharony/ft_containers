@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/10 10:29:51 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/10 18:29:12 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,17 +147,12 @@ namespace ft
 
 			void 					resize(size_type n, value_type val = value_type())
 			{
-				size_type _size = size();
-
-				if (n < _size)
+				if (n < size())
 				{
 					while (this->size() > n)
-					{
-						--_end;
-						_allocator.destroy(_end);
-					}
+						_allocator.destroy(--_end);
 				}
-				else if (n > _size)
+				else if (n > size())
 					this->insert(this->end(), n - size(), val);
 			}
 
@@ -292,24 +287,21 @@ namespace ft
 
 			iterator 				erase(iterator position)
 			{
-				ft::vector<T> tmp(position + 1, end());
+				ft::vector<T> _model(position + 1, end());
 
-				for (size_type i = 0; i < tmp.size(); i++)
-					pop_back();
-				pop_back();
-				for (iterator it = tmp.begin(); it != tmp.end(); it++)
-					push_back(*it);
+				for (size_type i = 0; i <= _model.size(); i++) pop_back();
+				
+				for (iterator it = _model.begin(); it != _model.end(); it++) push_back(*it);
+				
 				return (position);
 			}
 
 			iterator 				erase(iterator first, iterator last)
 			{
 				iterator	tmp = first;
-				while (tmp != last)
-				{
-					erase(first);
-					tmp++;
-				}
+
+				for (; tmp != last; tmp++) erase(first);
+				
 				return (first);
 			}
 
@@ -332,15 +324,8 @@ namespace ft
 			{
 				size_type _size = this->size();
 				
-				if (_size)
-				{
-
-					for (size_type i = 0; i < _size; i++)
-					{
-						_end--;
-						_allocator.destroy(this->_end);
-					}
-				}
+				for (size_type i = 0; i < _size; i++)
+					_allocator.destroy(--this->_end);
 			}
 
 		private:
@@ -411,7 +396,7 @@ namespace ft
 			{
 				size_type _len = last - first;
 
-				this->resize(0);
+				this->clear();
 				if (this->capacity() > _len)
 					this->_end = this->_copy(first, last, this->_end);
 				else
@@ -438,6 +423,7 @@ namespace ft
 			void					_insert_new(iterator position, size_type n, const value_type & val)
 			{
 				size_type _len = this->size() + ((this->size() > size_type(n)) ? this->size() : size_type(n));
+
 				size_type _len_b = position - begin();
 				
 				pointer _nbegin = _allocator.allocate(_len);
@@ -450,7 +436,7 @@ namespace ft
 				_nend = this->_copy(position.base(), this->_end, _nend);
 
 				clear();
-				_allocator.deallocate(this->_begin, this->capacity());
+				_allocator.deallocate(this->_begin, this->_available - this->_begin);
 
 				this->_begin = _nbegin;
 				this->_end = _nend;
@@ -600,7 +586,9 @@ namespace ft
 				pointer	_tmp = first;
 				
 				for (; n > 0; --n, ++_tmp)
+				{
 					_allocator.construct(&(*_tmp), val);
+				}
 				return (_tmp);
 			}
 
