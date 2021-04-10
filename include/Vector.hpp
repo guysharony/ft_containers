@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 17:56:07 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/10 09:21:30 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ namespace ft
 
 			size_type 				size() const
 			{
-				return (size_type(this->_end - this->_begin));
+				return (this->_end - this->_begin);
 			}
 
 			size_type 				max_size() const
@@ -151,14 +151,11 @@ namespace ft
 
 				if (n < _size)
 				{
-					while (this->size() > n)
-					{
-						--_end;
-						_allocator.destroy(_end);
-					}
+					for (size_type i = 0; i < (_size - n); i++, this->_end--)
+						_allocator.destroy(this->_end);
 				}
 				else if (n > _size)
-					this->insert(this->end(), n - this->size(), val);
+					this->insert(this->end(), n - _size, val);
 			}
 
 			size_type 				capacity()
@@ -173,14 +170,14 @@ namespace ft
 
 			void 					reserve(size_type n)
 			{
-				if (n > this->max_size())
-					throw (std::length_error("vector::reserve"));
-				else if (this->capacity() < n)
+				if (!n) return;
+				if (n > max_size()) throw std::length_error("vector::reserve");
+				if (capacity() < n)
 				{
 					pointer _nbegin = _allocator.allocate(n);
 					pointer _nend = _nbegin;
 
-					_nend = this->_copy(this->_begin, this->_end, _nend);
+					_nend = _copy(this->_begin, this->_end, _nend);
 
 					if (this->_begin)
 						_allocator.deallocate(this->_begin, this->capacity());
@@ -203,34 +200,36 @@ namespace ft
 
 			reference 				at(size_type n)
 			{
-				_range_check(n);
+				if (n >= this->size())
+					throw std::out_of_range("vector index n is out of range.");
 				return (*this)[n];
 			}
 
 			const_reference 		at(size_type n) const
 			{
-				_range_check(n);
+				if (n >= this->size())
+					throw std::out_of_range("vector index n is out of range.");
 				return (*this)[n];
 			}
 
 			reference 				front()
 			{
-				return *begin();
+				return *(begin());
 			}
 
 			const_reference 		front() const
 			{
-				return *begin();
+				return *(begin());
 			}
 
 			reference 				back()
 			{
-				return (*(end() - 1));
+				return *(end() - 1);
 			}
 
 			const_reference 		back() const
 			{
-				return (*(end() - 1));
+				return *(end() - 1);
 			}
 
 			template <class InputIterator>
@@ -249,43 +248,31 @@ namespace ft
 			void 					push_back(const value_type& val)
 			{
 				if (this->_end != this->_available)
-				{
 					this->_insert_end(val);
-				}
 				else
-				{
 					this->_insert(end(), val);
-				}
 			}
 
 			void 					pop_back()
 			{
-				_allocator.destroy(&this->back());
+				_allocator.destroy(this->_end);
 				--this->_end;
 			}
 
 			iterator 				insert(iterator position, const value_type& val)
 			{
-				ft::vector<T>	tmp(position, end());
-				for (size_type i = 0; i < tmp.size(); i++)
-					pop_back();
-				push_back(val);
-				iterator it = tmp.begin();
-				for (size_type i = 0; i < tmp.size(); i++, it++)
-					push_back(*it);
-				return (position);
+				difference_type _len = position - begin();
+
+				if (this->_end != this->_available && position == end())
+					this->_insert_end(val);
+				else
+					this->_insert(position, val);
+				return (iterator(this->_begin + _len));
 			}
 
 			void 					insert(iterator position, size_type n, const value_type& val)
 			{
-				ft::vector<T>	tmp(position, end());
-				for (size_type i = 0; i < tmp.size(); i++)
-					pop_back();
-				for (size_type i = 0; i < n; i++)
-					push_back(val);
-				iterator it = tmp.begin();
-				for (size_type i = 0; i < tmp.size(); i++, it++)
-					push_back(*it);
+				this->_insert_integer(position, n, val);
 			}
 
 			template <class InputIterator>
@@ -293,28 +280,25 @@ namespace ft
 			{
 				typedef typename ft::is_integral<InputIterator>::type 	type;
 				
-				this->_insert_range(position, first, last, type());
+				this->_insert(position, first, last, type());
 			}
 
 			iterator 				erase(iterator position)
 			{
-				ft::vector<T> tmp(position + 1, end());
-
-				for (size_type i = 0; i < tmp.size(); i++)
-					pop_back();
-				pop_back();
-				for (iterator it = tmp.begin(); it != tmp.end(); it++)
-					push_back(*it);
-				return (position);
+				return (this->erase(position, position + 1));
 			}
 
 			iterator 				erase(iterator first, iterator last)
 			{
-				iterator	tmp = first;
-				while (tmp != last)
+				pointer 	_first = &(*first);
+				pointer 	_last = &(*last);
+				size_type	_size = _last - _first;
+
+				if (first != last)
 				{
-					erase(first);
-					tmp++;
+					if (_last != this->_end)
+						this->_shift(_first, this->_end, _size);
+					this->_remove_end(_size);
 				}
 				return (first);
 			}
@@ -340,12 +324,8 @@ namespace ft
 				
 				if (_size)
 				{
-
-					for (size_type i = 0; i < _size; i++)
-					{
-						_end--;
+					for (size_type i = 0; i < _size; i++, this->_end--)
 						_allocator.destroy(this->_end);
-					}
 				}
 			}
 
@@ -390,8 +370,6 @@ namespace ft
 				++this->_end;
 			}
 
-
-
 			void					_remove_end(size_type n)
 			{
 				for (size_type i = n; i < this->size(); i++)
@@ -399,14 +377,96 @@ namespace ft
 				this->_end -= n;
 			}
 
-			template <class InputIterator>
-			void					_insert_range(iterator position, InputIterator n, InputIterator val, true_type)
+			void					_insert(iterator position, value_type const & val)
 			{
-				this->insert(position, n, val);
+				if (this->_end != this->_available)
+				{
+					_allocator.construct(this->_end, *(this->_end - 1));
+					++this->_end;
+					value_type _tmp = val;
+					*position = _tmp;
+				}
+				else
+					this->_insert_new(position, 1, val);
 			}
 
 			template <class InputIterator>
-			void					_insert_range(iterator position, InputIterator first, InputIterator last, false_type)
+			void					_assign(InputIterator first, InputIterator last, false_type)
+			{
+				size_type _len = last - first;
+
+				this->resize(0);
+				if (this->capacity() > _len)
+					this->_end = this->_copy(first, last, this->_end);
+				else
+				{
+					while (first < last)
+						push_back(*(first++));
+				}
+			}
+
+			void					_assign(size_type n, const value_type & val, true_type)
+			{
+				this->resize(0);
+				if (this->capacity() > n)
+					this->_end = this->_copy(this->_end, n, val);
+				else
+				{
+					while (n--)
+						push_back(val);
+				}
+			}
+
+			void					_insert_new(iterator position, size_type n, const value_type & val)
+			{
+				size_type _len = this->size() + ((this->size() > size_type(n)) ? this->size() : size_type(n));
+				size_type _len_b = position - begin();
+				
+				pointer _nbegin = _allocator.allocate(_len);
+				pointer _nend = _nbegin;
+
+				this->_copy(_nbegin + _len_b, n, val);
+				_nend = 0;
+				_nend = this->_copy(this->_begin, position.base(), _nbegin);
+				_nend += n;
+				_nend = this->_copy(position.base(), this->_end, _nend);
+
+				this->clear();
+				_allocator.deallocate(this->_begin, this->capacity());
+
+				this->_begin = _nbegin;
+				this->_end = _nend;
+				this->_available = _nbegin + _len;
+			}
+
+			template <class InputIterator>
+			void					_insert_range(iterator position, InputIterator first, InputIterator last)
+			{
+				size_type _len = this->size() + ((this->size() > size_type(last - first)) ? this->size() : size_type(last - first));
+				
+				pointer _nbegin = _allocator.allocate(_len);
+				pointer _nend = _nbegin;
+
+				_nend = this->_copy(this->_begin, position.base(), _nbegin);
+				_nend = this->_copy(first, last, _nend);
+				_nend = this->_copy(position.base(), this->_end, _nend);
+
+				this->clear();
+				_allocator.deallocate(this->_begin, this->capacity());
+
+				this->_begin = _nbegin;
+				this->_end = _nend;
+				this->_available = _nbegin + _len;
+			}
+
+			template<typename Integer>
+			void					_insert(iterator position, Integer n, Integer val, true_type)
+			{
+				this->_insert_integer(position, n, val);
+			}
+
+			template<typename InputIterator>
+			void					_insert(iterator position, InputIterator first, InputIterator last, false_type)
 			{
 				size_type _len = this->_available - this->_end;
 
@@ -440,92 +500,38 @@ namespace ft
 					}
 				}
 				else
-				{
-					size_type _len2 = this->size() + ((this->size() > size_type(last - first)) ? this->size() : size_type(last - first));
+					this->_insert_range(position, first, last);
+			}
+
+			void					_insert_integer(iterator position, size_type n, const value_type & val)
+			{
+				size_type _len = this->_available - this->_end;
 				
-					pointer _nbegin = _allocator.allocate(_len2);
-					pointer _nend = _nbegin;
+				size_type _len_f = end() - position;
 
-					_nend = this->_copy(this->_begin, position.base(), _nbegin);
-					_nend = this->_copy(first, last, _nend);
-					_nend = this->_copy(position.base(), this->_end, _nend);
-
-					this->clear();
-					_allocator.deallocate(this->_begin, this->capacity());
-
-					this->_begin = _nbegin;
-					this->_end = _nend;
-					this->_available = _nbegin + _len2;
-				}
-			}
-
-			void					_insert(iterator position, value_type const & val)
-			{
-				if (this->_end != this->_available)
+				if (!n) return;
+				if (n == 1) this->insert(position, val);
+				else if (_len >= n)
 				{
-					_allocator.construct(this->_end, *(this->_end - 1));
-					++this->_end;
-					value_type _tmp = val;
-					*position = _tmp;
-				}
-				else
-				{
-					this->_insert_new(position, 1, val);
-				}
-			}
-
-			template <class InputIterator>
-			void					_assign(InputIterator first, InputIterator last, false_type)
-			{
-				size_type _len = last - first;
-
-				this->resize(0);
-				if (this->capacity() > _len)
-					this->_end = this->_copy(first, last, this->_end);
-				else
-				{
-					while (first < last)
-						push_back(*(first++));
-				}
-			}
-
-			void					_assign(size_type n, const value_type& val, true_type)
-			{
-				this->clear();	
-				if (this->capacity() > n)
-					this->_end = this->_copy(this->_end, n, val);
-				else
-				{
-					for (; n; --n)
+					pointer _oend = this->_end;
+					if (_len_f > n)
 					{
-						push_back(val);
+						this->_move_end(n);
+						this->_move_back(position.base(), _oend - n, _oend);
+						this->_fill(position.base(), position.base() + n, val);
+					}
+					else
+					{
+						this->_copy(this->_end, n - _len_f, val);
+						this->_end += n - _len_f;
+						this->_move_back(position.base(), _oend, this->_end);
+						this->_end += _len_f;
+						this->_fill(position.base(), _oend, val);
 					}
 				}
+				else
+					_insert_new(position, n, val);
 			}
-
-			void					_insert_new(iterator position, size_type n, value_type const & val)
-			{
-				size_type _len = this->size() + ((this->size() > size_type(n)) ? this->size() : size_type(n));
-				size_type _len_b = position - begin();
-				
-				pointer _nbegin = _allocator.allocate(_len);
-				pointer _nend = _nbegin;
-
-				this->_copy(_nbegin + _len_b, n, val);
-				_nend = 0;
-				_nend = this->_copy(this->_begin, position.base(), _nbegin);
-				_nend += n;
-				_nend = this->_copy(position.base(), this->_end, _nend);
-
-				clear();
-				_allocator.deallocate(this->_begin, this->capacity());
-
-				this->_begin = _nbegin;
-				this->_end = _nend;
-				this->_available = _nbegin + _len;
-			}
-
-			
 
 			void					_move_end(size_type n)
 			{
@@ -555,7 +561,7 @@ namespace ft
 				_allocator.destroy(src);
 			}
 
-			void					_fill(pointer first, pointer last, value_type const & val)
+			void					_fill(pointer first, pointer last, const value_type & val)
 			{
 				while (first != last)
 				{
@@ -571,7 +577,7 @@ namespace ft
 					this->_move(first + i, first + n + i);
 			}
 
-			pointer					_copy(pointer first, size_type n, value_type const & val)
+			pointer					_copy(pointer first, size_type n, const value_type & val)
 			{
 				pointer	_tmp = first;
 				
@@ -598,12 +604,7 @@ namespace ft
 					_allocator.construct(&(*_tmp), *first);
 				return (_tmp);
 			}
-
-			void					_range_check(size_type n)
-			{
-				if (n >= this->size())
-					throw std::out_of_range("vector index n is out of range.");
-			}
+			
 	};
 
 	template <class T, class Alloc>
