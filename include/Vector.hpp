@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/10 09:21:30 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/10 10:29:51 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ namespace ft
 
 			size_type 				size() const
 			{
-				return (this->_end - this->_begin);
+				return (size_type(this->_end - this->_begin));
 			}
 
 			size_type 				max_size() const
@@ -151,16 +151,19 @@ namespace ft
 
 				if (n < _size)
 				{
-					for (size_type i = 0; i < (_size - n); i++, this->_end--)
-						_allocator.destroy(this->_end);
+					while (this->size() > n)
+					{
+						--_end;
+						_allocator.destroy(_end);
+					}
 				}
 				else if (n > _size)
-					this->insert(this->end(), n - _size, val);
+					this->insert(this->end(), n - size(), val);
 			}
 
 			size_type 				capacity()
 			{
-				return (this->_available - this->_begin);
+				return (size_type(this->_available - this->_begin));
 			}
 
 			bool 					empty() const
@@ -214,22 +217,22 @@ namespace ft
 
 			reference 				front()
 			{
-				return *(begin());
+				return *begin();
 			}
 
 			const_reference 		front() const
 			{
-				return *(begin());
+				return *begin();
 			}
 
 			reference 				back()
 			{
-				return *(end() - 1);
+				return (*(end() - 1));
 			}
 
 			const_reference 		back() const
 			{
-				return *(end() - 1);
+				return (*(end() - 1));
 			}
 
 			template <class InputIterator>
@@ -248,14 +251,18 @@ namespace ft
 			void 					push_back(const value_type& val)
 			{
 				if (this->_end != this->_available)
+				{
 					this->_insert_end(val);
+				}
 				else
+				{
 					this->_insert(end(), val);
+				}
 			}
 
 			void 					pop_back()
 			{
-				_allocator.destroy(this->_end);
+				_allocator.destroy(&this->back());
 				--this->_end;
 			}
 
@@ -285,20 +292,23 @@ namespace ft
 
 			iterator 				erase(iterator position)
 			{
-				return (this->erase(position, position + 1));
+				ft::vector<T> tmp(position + 1, end());
+
+				for (size_type i = 0; i < tmp.size(); i++)
+					pop_back();
+				pop_back();
+				for (iterator it = tmp.begin(); it != tmp.end(); it++)
+					push_back(*it);
+				return (position);
 			}
 
 			iterator 				erase(iterator first, iterator last)
 			{
-				pointer 	_first = &(*first);
-				pointer 	_last = &(*last);
-				size_type	_size = _last - _first;
-
-				if (first != last)
+				iterator	tmp = first;
+				while (tmp != last)
 				{
-					if (_last != this->_end)
-						this->_shift(_first, this->_end, _size);
-					this->_remove_end(_size);
+					erase(first);
+					tmp++;
 				}
 				return (first);
 			}
@@ -324,8 +334,12 @@ namespace ft
 				
 				if (_size)
 				{
-					for (size_type i = 0; i < _size; i++, this->_end--)
+
+					for (size_type i = 0; i < _size; i++)
+					{
+						_end--;
 						_allocator.destroy(this->_end);
+					}
 				}
 			}
 
@@ -387,7 +401,9 @@ namespace ft
 					*position = _tmp;
 				}
 				else
+				{
 					this->_insert_new(position, 1, val);
+				}
 			}
 
 			template <class InputIterator>
@@ -405,15 +421,17 @@ namespace ft
 				}
 			}
 
-			void					_assign(size_type n, const value_type & val, true_type)
+			void					_assign(size_type n, const value_type& val, true_type)
 			{
-				this->resize(0);
+				this->clear();	
 				if (this->capacity() > n)
 					this->_end = this->_copy(this->_end, n, val);
 				else
 				{
-					while (n--)
+					for (; n; --n)
+					{
 						push_back(val);
+					}
 				}
 			}
 
@@ -431,7 +449,7 @@ namespace ft
 				_nend += n;
 				_nend = this->_copy(position.base(), this->_end, _nend);
 
-				this->clear();
+				clear();
 				_allocator.deallocate(this->_begin, this->capacity());
 
 				this->_begin = _nbegin;
