@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/07 12:59:58 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:37:33 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,18 @@ namespace ft
 			: _node()
 			{ }
 
-			Binary_tree_iterator(node_type src)
+			explicit Binary_tree_iterator(node_type src)
 			: _node(src)
 			{ }
+
+			~Binary_tree_iterator()
+			{ }
+
+			self						&operator=(const self& src)
+			{
+				this->_node = src._node;
+				return (*this);
+			}
 
 			self&						operator++(void)
 			{
@@ -157,23 +166,33 @@ namespace ft
 			typedef const T& 									reference;
 			typedef const T* 									pointer;
 
+			typedef ft::Binary_tree_node<T>						iterator;
 			typedef ft::Binary_tree_const_iterator<T>			self;
 			typedef ft::bidirectional_iterator_tag				iterator_category;
 			typedef ptrdiff_t									difference_type;
 
-			typedef ft::Binary_tree_node<T>*					node_type;
+			typedef const ft::Binary_tree_node<T>*				node_type;
 
 			Binary_tree_const_iterator()
 			: _node()
 			{ }
 
-			Binary_tree_const_iterator(node_type src)
+			explicit Binary_tree_const_iterator(node_type src)
 			: _node(src)
 			{ }
 
-			Binary_tree_const_iterator(const Binary_tree_node<T>& src)
+			Binary_tree_const_iterator(const iterator& src)
 			: _node(src._node)
 			{ }
+
+			~Binary_tree_const_iterator()
+			{ }	
+
+			self	&operator=(const self& src)
+			{
+				this->_node = src._node;
+				return (*this);
+			}
 
 			self&						operator++(void)
 			{
@@ -281,6 +300,42 @@ namespace ft
 				while (node->right) get_right(node);
 			}
 	};
+
+	template <typename T>
+  	bool 	operator==(const ft::Binary_tree_iterator<T>& lhs, const ft::Binary_tree_const_iterator<T>& rhs)
+	{
+		return (lhs.base() == rhs.base());
+	}
+
+	template <typename T>
+  	bool 	operator!=(const ft::Binary_tree_iterator<T>& lhs, const ft::Binary_tree_const_iterator<T>& rhs)
+	{
+		return (lhs.base() != rhs.base());
+	}
+
+	template <typename T>
+  	bool 	operator<(const ft::Binary_tree_iterator<T>& lhs, const ft::Binary_tree_const_iterator<T>& rhs)
+	{
+		return (lhs.base() < rhs.base());
+	}
+
+	template <typename T>
+  	bool 	operator<=(const ft::Binary_tree_iterator<T>& lhs, const ft::Binary_tree_const_iterator<T>& rhs)
+	{
+		return (lhs.base() <= rhs.base());
+	}
+
+	template <typename T>
+  	bool 	operator>(const ft::Binary_tree_iterator<T>& lhs, const ft::Binary_tree_const_iterator<T>& rhs)
+	{
+		return (lhs.base() <= rhs.base());
+	}
+
+	template <typename T>
+  	bool 	operator>=(const ft::Binary_tree_iterator<T>& lhs, const ft::Binary_tree_const_iterator<T>& rhs)
+	{
+		return (lhs.base() >= rhs.base());
+	}
 
 	template <class Key, class Value, class Compare, class Node = ft::Binary_tree_node<Value>, class Node_Alloc = std::allocator<Node> >
 	class Binary_tree
@@ -513,7 +568,7 @@ namespace ft
 
 				if (is_black(_old)) repair_remove(_successor, _successor_parent);
 
-				_node->value.first = --_size;
+				--_size;
 				destroy_node(_old);
 			}
 
@@ -581,7 +636,7 @@ namespace ft
 
 			void										initialize_node(void)
 			{
-				_node = create_node(value_type(_size, 0));
+				_node = create_node(value_type());
 				_node->left = _node->right = _node;
 			}
 
@@ -752,7 +807,7 @@ namespace ft
 				
 				_node->parent->color = true;
 
-				_node->value.first = ++_size;
+				++_size;
 				return (result);
 			}
 
