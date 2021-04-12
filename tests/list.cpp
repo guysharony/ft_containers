@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 14:15:40 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/12 11:27:11 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ static void			end(bool show_errors)
 	for (int i = -5; i < 1; i++)
 		lst1.push_back(i);
 	out1 << print_list(lst1) << std::endl;
-	out1 << "ends with " << *(lst1.end()--) << std::endl;
 	a = out1.str();
 
 	std::stringstream 	out2;
@@ -168,7 +167,6 @@ static void			end(bool show_errors)
 	for (int i = -5; i < 1; i++)
 		lst2.push_back(i);
 	out2 << print_list(lst2) << std::endl;
-	out2 << "ends with " << *(lst2.end()--) << std::endl;
 	b = out2.str();
 	std::cout << "end: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
@@ -233,7 +231,6 @@ static void			rend(bool show_errors)
 	for (int i = 1; i < 6; i++)
 		lst1.push_back(i);
 	out1 << print_list(lst1) << std::endl;
-	out1 << "ends with " << *lst1.rend() << std::endl;
 	a = out1.str();
 
 	std::stringstream 	out2;
@@ -241,7 +238,6 @@ static void			rend(bool show_errors)
 	for (int i = 1; i < 6; i++)
 		lst2.push_back(i);
 	out2 << print_list(lst2) << std::endl;
-	out2 << "ends with " << *lst2.rend() << std::endl;
 	b = out2.str();
 	std::cout << "rend: [";
 	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;

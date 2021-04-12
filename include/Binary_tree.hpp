@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/12 10:23:22 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/12 10:56:25 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,6 +392,9 @@ namespace ft
 			Binary_tree& 								operator=(const Binary_tree& x)
 			{
 				this->remove(begin(), end());
+
+				this->_compare = x._compare;
+				this->_allocator = x._allocator;
 				this->insert(x.begin(), x.end());
 				return (*this);
 			}
@@ -550,7 +553,7 @@ namespace ft
 				_old_comp = x._compare;
 
 				x._node = _node;
-				x._size = _old_size;
+				x._size = _size;
 				x._compare = _compare;
 
 				_node = _old_node;

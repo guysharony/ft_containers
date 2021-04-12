@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:00:14 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/09 12:44:33 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/12 11:25:02 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -570,17 +570,7 @@ namespace ft
 
 				--_size;
 			}
-
-			size_type 						_new_size(size_type nbr)
-			{
-				size_type	_tmp = nbr;
-
-				if (ft::is_float<T>::value)
-					_tmp *= 1.4013e-45;
-				else if (ft::is_double<T>::value)
-					_tmp *= 4.94066e-324;
-				return (_tmp);
-			}
+			
 	};
 
 	template <class T, class Alloc>
