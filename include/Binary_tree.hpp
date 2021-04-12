@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:17:05 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/12 09:37:33 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/12 10:23:22 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,18 @@ namespace ft
 			: _node()
 			{ }
 
-			explicit Binary_tree_iterator(node_type src)
+			Binary_tree_iterator(node_type src)
 			: _node(src)
+			{ }
+
+			Binary_tree_iterator(const Binary_tree_iterator& src)
+			: _node(src._node)
 			{ }
 
 			~Binary_tree_iterator()
 			{ }
 
-			self						&operator=(const self& src)
+			Binary_tree_iterator		&operator=(const Binary_tree_iterator& src)
 			{
 				this->_node = src._node;
 				return (*this);
@@ -171,24 +175,28 @@ namespace ft
 			typedef ft::bidirectional_iterator_tag				iterator_category;
 			typedef ptrdiff_t									difference_type;
 
-			typedef const ft::Binary_tree_node<T>*				node_type;
+			typedef ft::Binary_tree_node<T>*					node_type;
 
 			Binary_tree_const_iterator()
 			: _node()
 			{ }
 
-			explicit Binary_tree_const_iterator(node_type src)
+			Binary_tree_const_iterator(node_type src)
 			: _node(src)
 			{ }
 
-			Binary_tree_const_iterator(const iterator& src)
+			Binary_tree_const_iterator(const Binary_tree_const_iterator& src)
+			: _node(src._node)
+			{ }
+
+			Binary_tree_const_iterator(const Binary_tree_iterator<T>& src)
 			: _node(src._node)
 			{ }
 
 			~Binary_tree_const_iterator()
 			{ }	
 
-			self	&operator=(const self& src)
+			Binary_tree_const_iterator	&operator=(const Binary_tree_const_iterator& src)
 			{
 				this->_node = src._node;
 				return (*this);

@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 08:37:28 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/12 09:31:29 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/12 10:03:07 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,9 +264,9 @@ namespace ft
 		typename map<Key, T, Compare, Alloc>::const_iterator first2 = rhs.begin();
 		typename map<Key, T, Compare, Alloc>::const_iterator last1 = lhs.end();
 		typename map<Key, T, Compare, Alloc>::const_iterator last2 = rhs.end();
-		while (first1 != last1)
+		while (first1 != last1 && first2 != last2)
 		{
-			if (first2 == last2 || *first1 != *first2)
+			if (*first1 != *first2)
 				return (false);
 			++first1;
 			++first2;
