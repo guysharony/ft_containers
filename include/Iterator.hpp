@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 15:29:27 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/12 10:32:17 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/14 06:19:27 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ namespace ft
 			list_iterator() : node() {}
 			list_iterator(ft::Node<T>* src) : node(src) {}
 			list_iterator(list_iterator const & src) : node(src.node) {}
-			virtual ~list_iterator() {}
+			~list_iterator() {}
 
 			list_iterator			&operator=(const list_iterator &src)
 			{
@@ -148,7 +148,7 @@ namespace ft
 			list_const_iterator(ft::Node<T>* src) : node(src) {}
 			list_const_iterator(list_iterator<T> const & src) : node(src.node) {}
 			list_const_iterator(list_const_iterator const & src) : node(src.node) {}
-			virtual ~list_const_iterator() {}
+			~list_const_iterator() {}
 
 			reference					operator*() const
 			{
@@ -215,7 +215,7 @@ namespace ft
 			template <class Iter>
   			reverse_iterator (const reverse_iterator<Iter>& rev_it) : _iterator(rev_it.base()) {}
 
-			virtual ~reverse_iterator() {}
+			~reverse_iterator() {}
 
 			iterator_type 		base(void) const
 			{

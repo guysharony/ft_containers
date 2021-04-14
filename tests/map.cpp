@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:46:53 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/12 11:28:27 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/14 06:13:22 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1820,109 +1820,6 @@ static void		constructors(bool show_errors)
 	}
 }
 
-void	lmartin(bool show_errors)
-{
-	std::string	a;
-	std::string	b;
-	
-	std::stringstream 			out1;
-	ft::map<std::string, int> 	map1;
-
-	map1.insert(ft::pair<std::string, int>("xD", 123));
-	out1 << print_list(map1);
-	map1.insert(map1.end(), ft::pair<std::string, int>("uch", 442));
-	out1 << print_list(map1);
-	map1.insert(map1.begin(), ft::pair<std::string, int>("uch", 22));
-	out1 << print_list(map1);
-	map1.insert(map1.end(), ft::pair<std::string, int>("uch", 23));
-	out1 << print_list(map1);
-	map1.insert(ft::pair<std::string, int>("uch", 23));
-	out1 << print_list(map1);
-	map1["lol"] = 8;
-
-	out1 << print_list(map1);
-	ft::map<std::string, int> map2;
-
-	out1 << print_list(map1);
-	out1 << print_list(map2);
-	out1 << print_list(map1);
-	out1 << "empty line\n";
-	out1 << print_list(map2);
-	out1 << "empty line2\n";
-
-	ft::swap(map1, map2);
-	out1 << "empty line3\n";
-	out1 << print_list(map1);
-	out1 << "empty line4\n";
-	out1 << print_list(map2);
-	out1 << "empty line5\n";
-
-	out1 << map1.size() << print_list(map1);
-	out1 << map2.size() << print_list(map2);
-	map1 = map2;
-	out1 << map1.size() << print_list(map1);
-	out1 << map2.size() << print_list(map2);
-
-	out1 << "map == map2: " << (map1 == map2) << std::endl;
-	out1 << map1.size() << print_list(map1);
-	out1 << map2.size() << print_list(map2);
-	a = out1.str();
-
-	std::stringstream 			out2;
-	std::map<std::string, int> 	map3;
-
-	map3.insert(std::pair<std::string, int>("xD", 123));
-	out2 << print_list(map3);
-	map3.insert(map3.end(), std::pair<std::string, int>("uch", 442));
-	out2 << print_list(map3);
-	map3.insert(map3.begin(), std::pair<std::string, int>("uch", 22));
-	out2 << print_list(map3);
-	map3.insert(map3.end(), std::pair<std::string, int>("uch", 23));
-	out2 << print_list(map3);
-	map3.insert(std::pair<std::string, int>("uch", 23));
-	out2 << print_list(map3);
-	map3["lol"] = 8;
-
-	out2 << print_list(map3);
-	std::map<std::string, int> map4;
-
-	out2 << print_list(map3);
-	out2 << print_list(map4);
-	out2 << print_list(map3);
-	out2 << "empty line\n";
-	out2 << print_list(map4);
-	out2 << "empty line2\n";
-
-	std::swap(map3, map4);
-	out2 << "empty line3\n";
-	out2 << print_list(map3);
-	out2 << "empty line4\n";
-	out2 << print_list(map4);
-	out2 << "empty line5\n";
-
-	out2 << map3.size() << print_list(map3);
-	out2 << map4.size() << print_list(map4);
-	map3 = map4;
-	out2 << map3.size() << print_list(map3);
-	out2 << map4.size() << print_list(map4);
-
-	out2 << "map == map2: " << (map3 == map4) << std::endl;
-	out2 << map3.size() << print_list(map3);
-	out2 << map4.size() << print_list(map4);
-	b = out2.str();
-
-	std::cout << "lmartin: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
-	if (show_errors && a.compare(b))
-	{
-		std::cout << "---" << std::endl;
-		std::cout << a;
-		std::cout << "-" << std::endl;
-		std::cout << b;
-		std::cout << "---" << std::endl;
-	}
-}
-
 void	test_map(bool show_errors)
 {
 	std::cout << "<=== Testing Map ===>" << std::endl;
@@ -1946,6 +1843,5 @@ void	test_map(bool show_errors)
 	upper_bound(show_errors);
 	equal_range(show_errors);
 	constructors(show_errors);
-	lmartin(show_errors);
 	std::cout << std::endl;
 }

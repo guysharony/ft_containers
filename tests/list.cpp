@@ -6,7 +6,7 @@
 /*   By: gsharony <gsharony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:15:32 by gsharony          #+#    #+#             */
-/*   Updated: 2021/04/12 11:27:11 by gsharony         ###   ########.fr       */
+/*   Updated: 2021/04/14 06:14:25 by gsharony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1902,78 +1902,6 @@ void	reverse_iterator(bool show_errors)
 	}
 }
 
-void	inception(bool show_errors)
-{
-	std::string a;
-	std::string b;
-	
-	std::stringstream			out1;
-	ft::list<int>				list1(3, 3);
-	//ft::list<ft::list<int> > 	list2;
-	ft::list<ft::list<int> > 	list3(5, list1);
-
-	out1 << "BOB(5, test(test, 5)) : \n";
-	//ft::list<ft::list<int> > 	list4(list3);
-
-	/*out1 << print_list(list2);
-	out1 << print_list(list3);
-	out1 << print_list(list4);*/
-	out1 << print_list(list1);
-
-	/*out1 << "\nCTORS\n";
-	out1 << "Empty is empty ? " << std::boolalpha << list1.empty() << '\n';
-	out1 << "BOB is empty? " << list3.empty() << '\n';
-
-	out1 << "Size of JOHN " << list1.size() << std::endl;
-	out1 << "Size of BOB " << list3.size() << std::endl;
-	out1 << "Size of MIKE " << list4.size() << std::endl;*/
-
-	/*out1 << print_list(list2);
-	out1 << print_list(list3);
-	out1 << print_list(list4);
-	out1 << print_list(list1);*/
-	a = out1.str();
-
-	std::stringstream			out2;
-	std::list<int>				list5(3, 3);
-	//std::list<std::list<int> > 	list6;
-	std::list<std::list<int> > 	list7(5, list5);
-
-	out2 << "BOB(5, test(test, 5)) : \n";
-	//std::list<std::list<int> > 	list8(list7);
-	/*out2 << print_list(list6);
-	out2 << print_list(list7);
-	out2 << print_list(list7);*/
-	out2 << print_list(list5);
-
-	/*out2 << "\nCTORS\n";
-	out2 << "Empty is empty ? " << std::boolalpha << list5.empty() << '\n';
-	out2 << "BOB is empty? " << list7.empty() << '\n';
-
-	out2 << "Size of JOHN " << list5.size() << std::endl;
-	out2 << "Size of BOB " << list7.size() << std::endl;
-	out2 << "Size of MIKE " << list7.size() << std::endl;*/
-
-	/*out2 << print_list(list6);
-	out2 << print_list(list7);
-	out2 << print_list(list7);
-	out2 << print_list(list5);*/
-	b = out2.str();
-
-	std::cout << "inception: [";
-	std::cout << (!(a.compare(b)) ? "ok" : "error") << "]" << std::endl;
-	if (show_errors)
-	{
-		if (a.compare(b)) {
-			std::cout << "---" << std::endl;
-			std::cout << a;
-			std::cout << "-" << std::endl;
-			std::cout << b;
-			std::cout << "---" << std::endl;
-		}
-	}
-}
-
 void	test_list(bool show_errors)
 {
 	std::cout << "<=== Testing list ===>" << std::endl;
@@ -2005,6 +1933,5 @@ void	test_list(bool show_errors)
 	reverse(show_errors);
 	operators(show_errors);
 	reverse_iterator(show_errors);
-	inception(show_errors);
 	std::cout << std::endl;
 }
